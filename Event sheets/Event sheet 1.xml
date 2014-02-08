@@ -1,0 +1,1870 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>Event sheet 1</name>
+    <events>
+        <variable constant="0" name="zawsze_0" sid="5962014361718358" static="0" type="number">0</variable>
+        <variable constant="0" name="boss" sid="4006007589329838" static="0" type="number">0</variable>
+        <variable constant="0" name="ammo" sid="1632696902349745" static="0" type="number">15</variable>
+        <variable constant="0" name="klikow" sid="4918515532015616" static="0" type="number">1</variable>
+        <variable constant="0" name="cena" sid="6805519527820794" static="0" type="number">800</variable>
+        <variable constant="0" name="touch" sid="3430502264514783" static="0" type="number">0</variable>
+        <variable constant="0" name="music" sid="6803326285403017" static="0" type="number">0</variable>
+        <variable constant="0" name="pause1" sid="8866326572258354" static="0" type="number">0</variable>
+        <variable constant="0" name="money" sid="1260984715681144" static="0" type="number">0</variable>
+        <variable constant="0" name="ilosc" sid="9180582756207551" static="0" type="number">12</variable>
+        <variable constant="0" name="death" sid="9430631890464835" static="0" type="number">0</variable>
+        <variable constant="0" name="licznik_zolnierzy" sid="7027297940414031" static="0" type="number">1</variable>
+        <variable constant="0" name="level" sid="7188325166007774" static="0" type="number">1</variable>
+        <variable constant="0" name="HP" sid="5405910041899955" static="0" type="number">200</variable>
+        <variable constant="0" name="points" sid="1745666837664095" static="0" type="number">0</variable>
+        <comment>When clicking the &apos;Share&apos; button, prompt the share user interface. Windows 8 will then call &apos;On Share&apos;, asking for what content should be shared. Then we respond with &apos;Share text&apos; and pass &apos;Hello world&apos; to share. You can also share links and HTML.</comment>
+        <event-block sid="610424642104385">
+            <conditions>
+                <condition id="5" name="On share" sid="2550626480245848" type="Windows8" />
+            </conditions>
+            <actions>
+                <action id="5" name="Share text" sid="1985897079357749" type="Windows8">
+                    <param id="0" name="Title">&quot;My &apos;Battle of Bunker&apos; results!&quot;</param>
+                    <param id="1" name="Description">&quot;Great game&quot;</param>
+                    <param id="2" name="Text">&quot;#battle_of_bunker&quot;&amp;newline&amp;&quot;I have played the &apos;Battle of Bunker&apos; and I have collected &quot;&amp;points&amp;&quot; points and achieved level &quot;&amp;level&amp;&quot;!&#x0D;&#x0A; &quot;&amp;newline&amp;&quot;Will you be better than me? &quot;&amp;newline&amp;&quot;http://apps.microsoft.com/windows/en-us/app/battle-of-bunker/bd92b8a4-6a99-4199-aa9d-08f0c084f1e2&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="5634974439899656">
+            <conditions>
+                <condition id="9" name="Is expired trial" sid="3818867823121488" type="Windows8" />
+            </conditions>
+            <actions>
+                <action id="0" name="Set text" sid="5504301728316397" type="PurchaseStatus">
+                    <param id="0" name="Text">&quot;Purchase status: expired trial&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="5400044571162286">
+            <conditions>
+                <condition id="-22" name="Else" sid="6212375833789025" type="System" />
+                <condition id="7" name="Is trial" sid="1684485492050445" type="Windows8" />
+            </conditions>
+            <actions>
+                <action id="0" name="Set text" sid="6352329690706992" type="PurchaseStatus">
+                    <param id="0" name="Text">&quot;Purchase status: trial&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="6267133246059742">
+            <conditions>
+                <condition id="-22" name="Else" sid="3384536830402701" type="System" />
+                <condition id="8" name="Is licensed" sid="7781592783119451" type="Windows8" />
+            </conditions>
+            <actions>
+                <action id="0" name="Set text" sid="5407666143336172" type="PurchaseStatus">
+                    <param id="0" name="Text">&quot;Purchase status: licensed&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="9438340362648927">
+            <conditions>
+                <condition id="-22" name="Else" sid="1193967350352818" type="System" />
+            </conditions>
+            <actions>
+                <action id="0" name="Set text" sid="8430250459483389" type="PurchaseStatus">
+                    <param id="0" name="Text">&quot;Purchase status: (don&apos;t know, not running in Windows 8)&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="5452520320007568">
+            <conditions>
+                <condition id="-1" name="Every tick" sid="2502701059671484" type="System" />
+                <condition id="-14" name="Compare variable" sid="2308488974688404" type="System">
+                    <param id="0" name="Variable">pause1</param>
+                    <param id="1" name="Comparison">1</param>
+                    <param id="2" name="Value">1</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-22" name="Set angle toward position" sid="4832015282951809" type="player">
+                    <param id="0" name="X">Touch.X</param>
+                    <param id="1" name="Y">Touch.Y</param>
+                </action>
+                <action id="-22" name="Set angle toward position" sid="454507797977016" type="player">
+                    <param id="0" name="X">Mouse.X</param>
+                    <param id="1" name="Y">Mouse.Y</param>
+                </action>
+                <action id="-22" name="Set angle toward position" sid="8156242405067251" type="enemy">
+                    <param id="0" name="X">bunker.X</param>
+                    <param id="1" name="Y">enemy.Y</param>
+                </action>
+                <action id="0" name="Set text" sid="4421856606693218" type="Text_level">
+                    <param id="0" name="Text">&quot;Level: &quot; &amp; level</param>
+                </action>
+                <action id="0" name="Set text" sid="5879297449495145" type="zolnierze">
+                    <param id="0" name="Text">&quot;Enemies left: &quot;&amp; (level*ilosc - licznik_zolnierzy)</param>
+                </action>
+                <action id="0" name="Set text" sid="6801351958869951" type="text_points">
+                    <param id="0" name="Text">&quot;Points: &quot; &amp; int(points)</param>
+                </action>
+                <action id="0" name="Set text" sid="7996842369758227" type="Text_hp">
+                    <param id="0" name="Text">&quot;HP: &quot; &amp; int(HP)</param>
+                </action>
+                <action behavior="Bullet" id="0" name="Set speed" sid="1545442657425744" type="enemy">
+                    <param id="0" name="Speed">level*25+25</param>
+                </action>
+                <action id="0" name="Set text" sid="4250232913785502" type="ded">
+                    <param id="0" name="Text">death</param>
+                </action>
+                <action id="0" name="Set text" sid="7137743910295075" type="kasa">
+                    <param id="0" name="Text">&quot;Cash: $&quot;&amp; int(money)</param>
+                </action>
+                <action id="-22" name="Set angle toward position" sid="4155535634882197" type="tank">
+                    <param id="0" name="X">600</param>
+                    <param id="1" name="Y">tank.Y</param>
+                </action>
+                <action id="0" name="Set text" sid="2191596349403523" type="introduct">
+                    <param id="0" name="Text">&quot;Level &quot;&amp;level&amp;&quot;!&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="9827702459711856" type="buyhp">
+                    <param id="0" name="Text">&quot;Buy 100HP for $&quot; &amp;cena</param>
+                </action>
+                <action id="0" name="Set text" sid="7459210804183619" type="ammotext">
+                    <param id="0" name="Text">&quot;Ammo: &quot;&amp;int(ammo)</param>
+                </action>
+                <action id="-22" name="Set angle toward position" sid="4101305395635614" type="boss1">
+                    <param id="0" name="X">200</param>
+                    <param id="1" name="Y">boss1.Y</param>
+                </action>
+                <action id="-22" name="Set angle toward position" sid="4121038574268322" type="boss2">
+                    <param id="0" name="X">200</param>
+                    <param id="1" name="Y">boss2.Y</param>
+                </action>
+                <action id="-22" name="Set angle toward position" sid="8630871819378958" type="boss3">
+                    <param id="0" name="X">200</param>
+                    <param id="1" name="Y">boss3.Y</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="14579662171739">
+            <conditions>
+                <condition id="-8" name="Compare two values" sid="2695253594000085" type="System">
+                    <param id="0" name="First value">level*ilosc</param>
+                    <param id="1" name="Comparison">4</param>
+                    <param id="2" name="Second value">licznik_zolnierzy</param>
+                </condition>
+                <condition id="-6" name="Every X seconds" sid="5107528241656265" type="System">
+                    <param id="0" name="Interval (seconds)">random(0.4,(1.2-(level*0.042)))</param>
+                </condition>
+                <condition id="-8" name="Compare two values" sid="6693779740326298" type="System">
+                    <param id="0" name="First value">level</param>
+                    <param id="1" name="Comparison">1</param>
+                    <param id="2" name="Second value">5</param>
+                </condition>
+                <condition id="-8" name="Compare two values" sid="5450620415496064" type="System">
+                    <param id="0" name="First value">level</param>
+                    <param id="1" name="Comparison">1</param>
+                    <param id="2" name="Second value">10</param>
+                </condition>
+                <condition id="-8" name="Compare two values" sid="1845182992292531" type="System">
+                    <param id="0" name="First value">level</param>
+                    <param id="1" name="Comparison">1</param>
+                    <param id="2" name="Second value">15</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-3" name="Create object" sid="2327208730934542" type="System">
+                    <param id="0" name="Object to create">enemy</param>
+                    <param id="1" name="Layer">2</param>
+                    <param id="2" name="X">850</param>
+                    <param id="3" name="Y">random(32,430)</param>
+                </action>
+                <action id="-10" name="Add to" sid="6805235885317689" type="System">
+                    <param id="0" name="Variable">licznik_zolnierzy</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="6358615475426172">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="7620558132432368" type="enemy">
+                    <param id="0" name="Object">bunker</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Spawn another object" sid="1972201469124789" type="enemy">
+                    <param id="0" name="Object">Sprite2</param>
+                    <param id="1" name="Layer">2</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+                <action id="-9" name="Destroy" sid="1918908832860879" type="enemy" />
+                <action id="-10" name="Add to" sid="4640890524996144" type="System">
+                    <param id="0" name="Variable">death</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="-11" name="Subtract from" sid="3404211640581246" type="System">
+                    <param id="0" name="Variable">HP</param>
+                    <param id="1" name="Value">random(25,32)</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="4363240208584005">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="8491503118945287" type="bullet">
+                    <param id="0" name="Object">enemy</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-10" name="Add to" sid="1574778616735992" type="System">
+                    <param id="0" name="Variable">points</param>
+                    <param id="1" name="Value">10+level*2</param>
+                </action>
+                <action id="0" name="Spawn another object" sid="9658879495602834" type="enemy">
+                    <param id="0" name="Object">Sprite2</param>
+                    <param id="1" name="Layer">2</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+                <action id="-9" name="Destroy" sid="6354481414547356" type="enemy" />
+                <action id="-9" name="Destroy" sid="5972309566215864" type="bullet" />
+                <action id="-10" name="Add to" sid="1009394487479992" type="System">
+                    <param id="0" name="Variable">death</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="-10" name="Add to" sid="7819641300339808" type="System">
+                    <param id="0" name="Variable">money</param>
+                    <param id="1" name="Value">random(5,15)</param>
+                </action>
+                <action id="-10" name="Add to" sid="7685687624700026" type="System">
+                    <param id="0" name="Variable">ammo</param>
+                    <param id="1" name="Value">random(1,3)</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="6404888342476596">
+            <conditions>
+                <condition id="-8" name="Compare two values" sid="6612538293714687" type="System">
+                    <param id="0" name="First value">HP</param>
+                    <param id="1" name="Comparison">3</param>
+                    <param id="2" name="Second value">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Spawn another object" sid="8010758703382836" type="bunker">
+                    <param id="0" name="Object">bigbang</param>
+                    <param id="1" name="Layer">2</param>
+                    <param id="2" name="Image point">1</param>
+                </action>
+                <action id="0" name="Spawn another object" sid="3712018955864914" type="bunker">
+                    <param id="0" name="Object">bigbang</param>
+                    <param id="1" name="Layer">2</param>
+                    <param id="2" name="Image point">2</param>
+                </action>
+                <action id="-9" name="Destroy" sid="3106147251530398" type="bunker" />
+                <action id="-9" name="Destroy" sid="9336950691308682" type="dzialo" />
+                <action id="-9" name="Destroy" sid="4767948330713527" type="enemy" />
+                <action id="-9" name="Destroy" sid="2041548798100181" type="player" />
+                <action id="0" name="Set text" sid="9312380305649893" type="gratz">
+                    <param id="0" name="Text">&quot;Congratulations! You&apos;ve Reached Level &quot;&amp;level&amp;&quot; and &quot;&amp;points&amp;&quot; Points!&quot;</param>
+                </action>
+                <action id="-3" name="Create object" sid="9197910488292548" type="System">
+                    <param id="0" name="Object to create">shareresults</param>
+                    <param id="1" name="Layer">3</param>
+                    <param id="2" name="X">200</param>
+                    <param id="3" name="Y">300</param>
+                </action>
+                <action id="-3" name="Create object" sid="680403648646576" type="System">
+                    <param id="0" name="Object to create">share2</param>
+                    <param id="1" name="Layer">3</param>
+                    <param id="2" name="X">200</param>
+                    <param id="3" name="Y">240</param>
+                </action>
+                <action id="-3" name="Create object" sid="3089995845843793" type="System">
+                    <param id="0" name="Object to create">playagain</param>
+                    <param id="1" name="Layer">3</param>
+                    <param id="2" name="X">200</param>
+                    <param id="3" name="Y">180</param>
+                </action>
+                <action id="-3" name="Create object" sid="3832098421663436" type="System">
+                    <param id="0" name="Object to create">bizz2</param>
+                    <param id="1" name="Layer">3</param>
+                    <param id="2" name="X">200</param>
+                    <param id="3" name="Y">375</param>
+                </action>
+                <action id="-15" name="Set visible" sid="5926154408188277" type="pauza_tlo">
+                    <param id="0" name="Visibility">1</param>
+                </action>
+                <action id="-16" name="Wait" sid="8195911297388077" type="System">
+                    <param id="0" name="Seconds">2</param>
+                </action>
+                <action id="-13" name="Set time scale" sid="5465661657509599" type="System">
+                    <param id="0" name="Time scale">0</param>
+                </action>
+                <action id="-9" name="Set value" sid="500840368108815" type="System">
+                    <param id="0" name="Variable">HP</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="6722387390904372">
+            <conditions>
+                <condition id="5" name="On any finished" sid="5790130811234441" type="enemy" />
+            </conditions>
+            <actions>
+                <action id="3" name="Start" sid="9193560446805794" type="enemy">
+                    <param id="0" name="From">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>RESTART LAYOUTU</comment>
+        <event-block sid="8546396208288811">
+            <conditions>
+                <condition id="-8" name="Compare two values" sid="8830943390535543" type="System">
+                    <param id="0" name="First value">level*ilosc</param>
+                    <param id="1" name="Comparison">3</param>
+                    <param id="2" name="Second value">death</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="8170202451734405" type="System">
+                    <param id="0" name="Variable">zawsze_0</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-16" name="Wait" sid="7315749599856531" type="System">
+                    <param id="0" name="Seconds">3</param>
+                </action>
+                <action id="-10" name="Add to" sid="8233123967834671" type="System">
+                    <param id="0" name="Variable">level</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="-9" name="Set value" sid="4581255229821592" type="System">
+                    <param id="0" name="Variable">HP</param>
+                    <param id="1" name="Value">1000+(klikow-1)*100</param>
+                </action>
+                <action id="-9" name="Set value" sid="242865846542126" type="System">
+                    <param id="0" name="Variable">licznik_zolnierzy</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="-9" name="Set value" sid="9776070141718889" type="System">
+                    <param id="0" name="Variable">death</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="0" name="Set text" sid="876061912589368" type="info">
+                    <param id="0" name="Text">&quot;&quot;</param>
+                </action>
+                <action id="-9" name="Set value" sid="8772825694743028" type="System">
+                    <param id="0" name="Variable">boss</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-26" name="Restart layout" sid="9220186798415701" type="System" />
+            </actions>
+            <sub-events>
+                <event-block sid="6390832711788465">
+                    <conditions>
+                        <condition id="-8" name="Compare two values" sid="1045075975134794" type="System">
+                            <param id="0" name="First value">level</param>
+                            <param id="1" name="Comparison">5</param>
+                            <param id="2" name="Second value">10</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" sid="3551329717366224" type="System">
+                            <param id="0" name="Variable">HP</param>
+                            <param id="1" name="Value">1600+(klikow-1)*100</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="6766845365706061">
+            <conditions>
+                <condition id="-6" name="Every X seconds" sid="3104804399949218" type="System">
+                    <param id="0" name="Interval (seconds)">random(1,2.5)</param>
+                </condition>
+                <condition id="-1" name="Compare X" sid="1282232920744393" type="enemy">
+                    <param id="0" name="Comparison">3</param>
+                    <param id="1" name="X co-ordinate">515</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Spawn another object" sid="5304676088490031" type="enemy">
+                    <param id="0" name="Object">enemy_bullet</param>
+                    <param id="1" name="Layer">2</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="388704475133536">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="6100780398347642" type="enemy_bullet">
+                    <param id="0" name="Object">bunker</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-11" name="Subtract from" sid="6097261630371522" type="System">
+                    <param id="0" name="Variable">HP</param>
+                    <param id="1" name="Value">random(5,12)</param>
+                </action>
+                <action id="-9" name="Destroy" sid="5853900955154621" type="enemy_bullet" />
+            </actions>
+        </event-block>
+        <event-block sid="2832743302084033">
+            <conditions>
+                <condition id="-6" name="Every X seconds" sid="1084383657039628" type="System">
+                    <param id="0" name="Interval (seconds)">random(4,6)</param>
+                </condition>
+                <condition id="-14" name="Compare variable" sid="2162629594206527" type="System">
+                    <param id="0" name="Variable">level</param>
+                    <param id="1" name="Comparison">5</param>
+                    <param id="2" name="Value">4</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Spawn another object" sid="5595964374774266" type="dzialo">
+                    <param id="0" name="Object">pocisk_big</param>
+                    <param id="1" name="Layer">2</param>
+                    <param id="2" name="Image point">1</param>
+                </action>
+                <action id="0" name="Spawn another object" sid="5738673828229812" type="dzialo">
+                    <param id="0" name="Object">dymu</param>
+                    <param id="1" name="Layer">2</param>
+                    <param id="2" name="Image point">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="9523390260209053">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="8680426414746701" type="pocisk_big">
+                    <param id="0" name="Object">enemy</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-10" name="Add to" sid="2854758177712689" type="System">
+                    <param id="0" name="Variable">points</param>
+                    <param id="1" name="Value">10+level</param>
+                </action>
+                <action id="0" name="Spawn another object" sid="1575913963593202" type="enemy">
+                    <param id="0" name="Object">Sprite2</param>
+                    <param id="1" name="Layer">2</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+                <action id="-9" name="Destroy" sid="7076047744183723" type="enemy" />
+                <action id="-10" name="Add to" sid="8094664361970925" type="System">
+                    <param id="0" name="Variable">death</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="-10" name="Add to" sid="6594229492173883" type="System">
+                    <param id="0" name="Variable">money</param>
+                    <param id="1" name="Value">random(3,10)</param>
+                </action>
+                <action id="-10" name="Add to" sid="1684500320610868" type="System">
+                    <param id="0" name="Variable">ammo</param>
+                    <param id="1" name="Value">random(0,2)</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="6661226155619618">
+            <conditions>
+                <condition id="-11" name="For Each" sid="6215139485485345" type="System">
+                    <param id="0" name="Object">dzialo</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action behavior="Turret" id="1" name="Add object to target" sid="7651162294861096" type="dzialo">
+                    <param id="0" name="Target">boss1</param>
+                </action>
+                <action behavior="Turret" id="1" name="Add object to target" sid="92755788383788" type="dzialo">
+                    <param id="0" name="Target">boss2</param>
+                </action>
+                <action behavior="Turret" id="1" name="Add object to target" sid="8229590388932157" type="dzialo">
+                    <param id="0" name="Target">boss3</param>
+                </action>
+                <action behavior="Turret" id="1" name="Add object to target" sid="4295173808983152" type="dzialo">
+                    <param id="0" name="Target">enemy</param>
+                </action>
+                <action behavior="Turret" id="1" name="Add object to target" sid="5150837871295089" type="dzialo">
+                    <param id="0" name="Target">tank</param>
+                </action>
+                <action behavior="Turret" id="3" name="Unacquire target" sid="8503577221385011" type="dzialo" />
+            </actions>
+        </event-block>
+        <event-block sid="5059495692772386">
+            <conditions>
+                <condition id="-18" name="On created" sid="4541530742531988" type="luska" />
+            </conditions>
+            <actions>
+                <action id="-8" name="Set angle" sid="7722996928632323" type="luska">
+                    <param id="0" name="Angle">player.Angle+90</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="2490179613999642">
+            <conditions>
+                <condition id="-6" name="Every X seconds" sid="8961192379934649" type="System">
+                    <param id="0" name="Interval (seconds)">random(15,28)</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-3" name="Create object" sid="2015347556965115" type="System">
+                    <param id="0" name="Object to create">tank</param>
+                    <param id="1" name="Layer">2</param>
+                    <param id="2" name="X">850</param>
+                    <param id="3" name="Y">random(32,430)</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="3439955114744685">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="7389846123871429" type="pocisk_big">
+                    <param id="0" name="Object">tank</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-12" name="Subtract from" sid="6659621934224688" type="tank">
+                    <param id="0" name="Instance variable">HP1</param>
+                    <param id="1" name="Value">49</param>
+                </action>
+                <action id="-9" name="Destroy" sid="5609471156714709" type="pocisk_big" />
+                <action id="0" name="Spawn another object" sid="3459859373509102" type="tank">
+                    <param id="0" name="Object">Sprite2</param>
+                    <param id="1" name="Layer">2</param>
+                    <param id="2" name="Image point">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="9453541276464159">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="6250154937991844" type="bullet">
+                    <param id="0" name="Object">tank</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-12" name="Subtract from" sid="8234041307242428" type="tank">
+                    <param id="0" name="Instance variable">HP1</param>
+                    <param id="1" name="Value">15</param>
+                </action>
+                <action id="0" name="Spawn another object" sid="2780799196477316" type="tank">
+                    <param id="0" name="Object">Sprite2</param>
+                    <param id="1" name="Layer">2</param>
+                    <param id="2" name="Image point">1</param>
+                </action>
+                <action id="-9" name="Destroy" sid="6118182951861065" type="bullet" />
+            </actions>
+        </event-block>
+        <event-block sid="3633376216440635">
+            <conditions>
+                <condition id="-6" name="Every X seconds" sid="4928627477431939" type="System">
+                    <param id="0" name="Interval (seconds)">random(4,8)</param>
+                </condition>
+                <condition id="-1" name="Compare X" sid="422696549003442" type="tank">
+                    <param id="0" name="Comparison">3</param>
+                    <param id="1" name="X co-ordinate">763</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Spawn another object" sid="5634041475250992" type="tank">
+                    <param id="0" name="Object">tank_bullet</param>
+                    <param id="1" name="Layer">2</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+                <action id="0" name="Spawn another object" sid="9781794955988899" type="tank">
+                    <param id="0" name="Object">dymu</param>
+                    <param id="1" name="Layer">2</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="2328458157079976">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="4366475641398174" type="tank_bullet">
+                    <param id="0" name="Object">bunker</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-11" name="Subtract from" sid="8704023354323508" type="System">
+                    <param id="0" name="Variable">HP</param>
+                    <param id="1" name="Value">75</param>
+                </action>
+                <action id="0" name="Spawn another object" sid="5013804131975112" type="tank_bullet">
+                    <param id="0" name="Object">Sprite2</param>
+                    <param id="1" name="Layer">2</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+                <action id="-9" name="Destroy" sid="5773905558291124" type="tank_bullet" />
+            </actions>
+        </event-block>
+        <event-block sid="654709272548337">
+            <conditions>
+                <condition id="-1" name="Compare X" sid="6063380199410308" type="tank">
+                    <param id="0" name="Comparison">3</param>
+                    <param id="1" name="X co-ordinate">603</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action behavior="Bullet" id="0" name="Set speed" sid="9103820942988359" type="tank">
+                    <param id="0" name="Speed">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="7289224505008703">
+            <conditions>
+                <condition id="-7" name="Compare instance variable" sid="2529498092490365" type="tank">
+                    <param id="0" name="Instance variable">HP1</param>
+                    <param id="1" name="Comparison">3</param>
+                    <param id="2" name="Value">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-10" name="Add to" sid="5598137613319214" type="System">
+                    <param id="0" name="Variable">money</param>
+                    <param id="1" name="Value">random(25,55)</param>
+                </action>
+                <action id="-10" name="Add to" sid="5871276060773649" type="System">
+                    <param id="0" name="Variable">points</param>
+                    <param id="1" name="Value">40+level*2</param>
+                </action>
+                <action id="0" name="Spawn another object" sid="5218893664450305" type="tank">
+                    <param id="0" name="Object">bigbang</param>
+                    <param id="1" name="Layer">2</param>
+                    <param id="2" name="Image point">1</param>
+                </action>
+                <action id="-9" name="Destroy" sid="1555442819494576" type="tank" />
+                <action id="-10" name="Add to" sid="3724167829268133" type="System">
+                    <param id="0" name="Variable">money</param>
+                    <param id="1" name="Value">random(45,75)</param>
+                </action>
+                <action id="-10" name="Add to" sid="7908576251164173" type="System">
+                    <param id="0" name="Variable">ammo</param>
+                    <param id="1" name="Value">random(3,6)</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="7027710673053653">
+            <conditions>
+                <condition id="-18" name="On created" sid="485195099730175" type="tank" />
+            </conditions>
+            <actions>
+                <action id="-8" name="Set angle" sid="5234042112645136" type="tank">
+                    <param id="0" name="Angle">180</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="3450823423712268">
+            <conditions>
+                <condition id="6" name="On object clicked" sid="4190865616503985" type="Mouse">
+                    <param id="0" name="Mouse button">0</param>
+                    <param id="1" name="Click type">0</param>
+                    <param id="2" name="Object clicked">pauza</param>
+                </condition>
+                <condition id="-14" name="Compare variable" sid="9318684686298504" type="System">
+                    <param id="0" name="Variable">pause1</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="3670401310240938" type="System">
+                    <param id="0" name="Variable">pause1</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="-13" name="Set time scale" sid="4607788449661141" type="System">
+                    <param id="0" name="Time scale">0</param>
+                </action>
+                <action id="-15" name="Set visible" sid="8856586475315655" type="play">
+                    <param id="0" name="Visibility">1</param>
+                </action>
+                <action id="-15" name="Set visible" sid="8164817688912635" type="pauza">
+                    <param id="0" name="Visibility">0</param>
+                </action>
+                <action id="-3" name="Create object" sid="6410701074783062" type="System">
+                    <param id="0" name="Object to create">textpaused</param>
+                    <param id="1" name="Layer">3</param>
+                    <param id="2" name="X">400</param>
+                    <param id="3" name="Y">225</param>
+                </action>
+                <action id="-3" name="Create object" sid="9092727528657781" type="System">
+                    <param id="0" name="Object to create">muzikaaa</param>
+                    <param id="1" name="Layer">3</param>
+                    <param id="2" name="X">400</param>
+                    <param id="3" name="Y">180</param>
+                </action>
+                <action id="-3" name="Create object" sid="3773105143892246" type="System">
+                    <param id="0" name="Object to create">ofyfy</param>
+                    <param id="1" name="Layer">3</param>
+                    <param id="2" name="X">500</param>
+                    <param id="3" name="Y">180</param>
+                </action>
+                <action id="-15" name="Set visible" sid="9887001421431649" type="pauza_tlo">
+                    <param id="0" name="Visibility">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="3954273418312749">
+            <conditions>
+                <condition id="6" name="On object clicked" sid="8251089259432022" type="Mouse">
+                    <param id="0" name="Mouse button">0</param>
+                    <param id="1" name="Click type">0</param>
+                    <param id="2" name="Object clicked">play</param>
+                </condition>
+                <condition id="-14" name="Compare variable" sid="7162356082901418" type="System">
+                    <param id="0" name="Variable">pause1</param>
+                    <param id="1" name="Comparison">1</param>
+                    <param id="2" name="Value">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="2908769611518041" type="System">
+                    <param id="0" name="Variable">pause1</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-13" name="Set time scale" sid="7742713195175078" type="System">
+                    <param id="0" name="Time scale">1</param>
+                </action>
+                <action id="-15" name="Set visible" sid="7970342457881954" type="play">
+                    <param id="0" name="Visibility">0</param>
+                </action>
+                <action id="-15" name="Set visible" sid="8176538239099493" type="pauza">
+                    <param id="0" name="Visibility">1</param>
+                </action>
+                <action id="-9" name="Destroy" sid="753890037191846" type="textpaused" />
+                <action id="-9" name="Destroy" sid="1723762162300708" type="muzikaaa" />
+                <action id="-9" name="Destroy" sid="7366310852811134" type="ofyfy" />
+                <action id="-15" name="Set visible" sid="6729177685854806" type="pauza_tlo">
+                    <param id="0" name="Visibility">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="6872387379697691">
+            <conditions>
+                <condition id="-18" name="On created" sid="5765971639311803" type="extra_text" />
+            </conditions>
+            <actions>
+                <action id="-8" name="Set angle" sid="435315772680377" type="extra_text">
+                    <param id="0" name="Angle">360</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="6609400086327204">
+            <conditions>
+                <condition id="-14" name="Compare variable" sid="4321336852909591" type="System">
+                    <param id="0" name="Variable">level</param>
+                    <param id="1" name="Comparison">5</param>
+                    <param id="2" name="Value">3</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-15" name="Set visible" sid="2419200922816873" type="dzialo">
+                    <param id="0" name="Visibility">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="5636822063565947">
+            <conditions>
+                <condition id="-8" name="Compare two values" sid="4166622363055492" type="System">
+                    <param id="0" name="First value">level</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Second value">3</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Set text" sid="2777239367974501" type="info">
+                    <param id="0" name="Text">&quot;Cannons will be ready in the next round!&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="9611940419712289">
+            <conditions>
+                <condition id="-8" name="Compare two values" sid="7314266269869622" type="System">
+                    <param id="0" name="First value">level</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Second value">4</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Set text" sid="3499015247776826" type="info">
+                    <param id="0" name="Text">&quot;Cannons are ready!&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="7125701631097294">
+            <conditions>
+                <condition id="-14" name="Compare variable" sid="9784538250411218" type="System">
+                    <param id="0" name="Variable">HP</param>
+                    <param id="1" name="Comparison">3</param>
+                    <param id="2" name="Value">550</param>
+                </condition>
+                <condition id="-14" name="Compare variable" sid="7198187999847342" type="System">
+                    <param id="0" name="Variable">level</param>
+                    <param id="1" name="Comparison">5</param>
+                    <param id="2" name="Value">3</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-15" name="Set visible" sid="1742817711916225" type="pekniecia1">
+                    <param id="0" name="Visibility">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="4231740372114871">
+            <conditions>
+                <condition id="-14" name="Compare variable" sid="6033476609943528" type="System">
+                    <param id="0" name="Variable">level</param>
+                    <param id="1" name="Comparison">5</param>
+                    <param id="2" name="Value">3</param>
+                </condition>
+                <condition id="-14" name="Compare variable" sid="6919066453292473" type="System">
+                    <param id="0" name="Variable">HP</param>
+                    <param id="1" name="Comparison">3</param>
+                    <param id="2" name="Value">300</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-15" name="Set visible" sid="2921529471842476" type="pekniecia3">
+                    <param id="0" name="Visibility">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="4211671403403149">
+            <conditions>
+                <condition id="6" name="On object clicked" sid="2377542721524913" type="Mouse">
+                    <param id="0" name="Mouse button">0</param>
+                    <param id="1" name="Click type">0</param>
+                    <param id="2" name="Object clicked">playagain</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-21" name="Reset global variables" sid="9161207898609301" type="System" />
+                <action id="-26" name="Restart layout" sid="5676362977075811" type="System" />
+            </actions>
+        </event-block>
+        <event-block sid="7719844276648006">
+            <conditions>
+                <condition id="-1" name="Every tick" sid="6375488558808667" type="System" />
+            </conditions>
+            <actions>
+                <action id="5" name="Set web font" sid="8793451840613403" type="cash">
+                    <param id="0" name="Family name">&quot;komika_axisregular&quot;</param>
+                    <param id="1" name="CSS URL">&quot;stylesheet.css&quot;</param>
+                </action>
+                <action id="5" name="Set web font" sid="7429879174722972" type="gratz">
+                    <param id="0" name="Family name">&quot;komika_axisregular&quot;</param>
+                    <param id="1" name="CSS URL">&quot;stylesheet.css&quot;</param>
+                </action>
+                <action id="5" name="Set web font" sid="2295279596467009" type="Text_hp">
+                    <param id="0" name="Family name">&quot;komika_axisregular&quot;</param>
+                    <param id="1" name="CSS URL">&quot;stylesheet.css&quot;</param>
+                </action>
+                <action id="5" name="Set web font" sid="9926488921009527" type="gratz">
+                    <param id="0" name="Family name">&quot;komika_axisregular&quot;</param>
+                    <param id="1" name="CSS URL">&quot;stylesheet.css&quot;</param>
+                </action>
+                <action id="5" name="Set web font" sid="5661761566926867" type="zolnierze">
+                    <param id="0" name="Family name">&quot;komika_axisregular&quot;</param>
+                    <param id="1" name="CSS URL">&quot;stylesheet.css&quot;</param>
+                </action>
+                <action id="5" name="Set web font" sid="5041303499957767" type="Text_level">
+                    <param id="0" name="Family name">&quot;komika_axisregular&quot;</param>
+                    <param id="1" name="CSS URL">&quot;stylesheet.css&quot;</param>
+                </action>
+                <action id="5" name="Set web font" sid="1554315698735055" type="text_points">
+                    <param id="0" name="Family name">&quot;komika_axisregular&quot;</param>
+                    <param id="1" name="CSS URL">&quot;stylesheet.css&quot;</param>
+                </action>
+                <action id="5" name="Set web font" sid="6853520235702264" type="playagain">
+                    <param id="0" name="Family name">&quot;komika_axisregular&quot;</param>
+                    <param id="1" name="CSS URL">&quot;stylesheet.css&quot;</param>
+                </action>
+                <action id="5" name="Set web font" sid="7408291412150333" type="shareresults">
+                    <param id="0" name="Family name">&quot;komika_axisregular&quot;</param>
+                    <param id="1" name="CSS URL">&quot;stylesheet.css&quot;</param>
+                </action>
+                <action id="5" name="Set web font" sid="7478999964690891" type="share2">
+                    <param id="0" name="Family name">&quot;komika_axisregular&quot;</param>
+                    <param id="1" name="CSS URL">&quot;stylesheet.css&quot;</param>
+                </action>
+                <action id="5" name="Set web font" sid="239594222707161" type="textpaused">
+                    <param id="0" name="Family name">&quot;komika_axisregular&quot;</param>
+                    <param id="1" name="CSS URL">&quot;stylesheet.css&quot;</param>
+                </action>
+                <action id="5" name="Set web font" sid="6550739207344101" type="muzikaaa">
+                    <param id="0" name="Family name">&quot;komika_axisregular&quot;</param>
+                    <param id="1" name="CSS URL">&quot;stylesheet.css&quot;</param>
+                </action>
+                <action id="5" name="Set web font" sid="4932737409505637" type="ofyfy">
+                    <param id="0" name="Family name">&quot;komika_axisregular&quot;</param>
+                    <param id="1" name="CSS URL">&quot;stylesheet.css&quot;</param>
+                </action>
+                <action id="5" name="Set web font" sid="3332349904500518" type="introduct">
+                    <param id="0" name="Family name">&quot;komika_axisregular&quot;</param>
+                    <param id="1" name="CSS URL">&quot;stylesheet.css&quot;</param>
+                </action>
+                <action id="5" name="Set web font" sid="6258557369918361" type="ammotext">
+                    <param id="0" name="Family name">&quot;komika_axisregular&quot;</param>
+                    <param id="1" name="CSS URL">&quot;stylesheet.css&quot;</param>
+                </action>
+                <action id="5" name="Set web font" sid="7176820309020579" type="bossHP">
+                    <param id="0" name="Family name">&quot;komika_axisregular&quot;</param>
+                    <param id="1" name="CSS URL">&quot;stylesheet.css&quot;</param>
+                </action>
+                <action id="5" name="Set web font" sid="9518066146818927" type="buyhp">
+                    <param id="0" name="Family name">&quot;komika_axisregular&quot;</param>
+                    <param id="1" name="CSS URL">&quot;stylesheet.css&quot;</param>
+                </action>
+                <action id="5" name="Set web font" sid="215248169064794" type="kasa">
+                    <param id="0" name="Family name">&quot;komika_axisregular&quot;</param>
+                    <param id="1" name="CSS URL">&quot;stylesheet.css&quot;</param>
+                </action>
+                <action id="4" name="Set font color" sid="2793267776749394" type="shareresults">
+                    <param id="0" name="Color">rgb(0,190, 0)</param>
+                </action>
+                <action id="4" name="Set font color" sid="2751522196966778" type="playagain">
+                    <param id="0" name="Color">rgb(0,192, 0)</param>
+                </action>
+                <action id="4" name="Set font color" sid="1732915602330817" type="share2">
+                    <param id="0" name="Color">rgb(0,192, 0)</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="2523784861821999">
+            <conditions>
+                <condition id="7" name="Cursor is over object" sid="7642566254446626" type="Mouse">
+                    <param id="0" name="Object">shareresults</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="4" name="Set font color" sid="7056229240291951" type="shareresults">
+                    <param id="0" name="Color">rgb(50, 255, 0)</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="1721785451299547">
+            <conditions>
+                <condition id="7" name="Cursor is over object" sid="2616128878129628" type="Mouse">
+                    <param id="0" name="Object">playagain</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="4" name="Set font color" sid="3899386817534936" type="playagain">
+                    <param id="0" name="Color">rgb(50, 255, 0)</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="1203027949109952">
+            <conditions>
+                <condition id="7" name="Cursor is over object" sid="6911804079979452" type="Mouse">
+                    <param id="0" name="Object">share2</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="4" name="Set font color" sid="7609666991636028" type="share2">
+                    <param id="0" name="Color">rgb(50, 255, 0)</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="8621604141097918">
+            <conditions>
+                <condition id="-14" name="Compare variable" sid="5883022805242401" type="System">
+                    <param id="0" name="Variable">ammo</param>
+                    <param id="1" name="Comparison">4</param>
+                    <param id="2" name="Value">0</param>
+                </condition>
+                <condition id="2" name="Is in touch" sid="9012435078893927" type="Touch" />
+                <condition id="-14" name="Compare variable" sid="159830821682176" type="System">
+                    <param id="0" name="Variable">pause1</param>
+                    <param id="1" name="Comparison">1</param>
+                    <param id="2" name="Value">1</param>
+                </condition>
+                <condition id="-14" name="Compare variable" sid="8200606325065867" type="System">
+                    <param id="0" name="Variable">touch</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-10" name="Add to" sid="6578451086737807" type="System">
+                    <param id="0" name="Variable">touch</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="0" name="Spawn another object" sid="3505801068917903" type="player">
+                    <param id="0" name="Object">bullet</param>
+                    <param id="1" name="Layer">2</param>
+                    <param id="2" name="Image point">1</param>
+                </action>
+                <action id="-8" name="Set angle" sid="7155111210758665" type="luska">
+                    <param id="0" name="Angle">90</param>
+                </action>
+                <action behavior="Bullet" id="3" name="Set angle of motion" sid="5358378619639582" type="luska">
+                    <param id="0" name="Angle">90</param>
+                </action>
+                <action id="0" name="Spawn another object" sid="6642044827393471" type="player">
+                    <param id="0" name="Object">luska</param>
+                    <param id="1" name="Layer">2</param>
+                    <param id="2" name="Image point">2</param>
+                </action>
+                <action id="-11" name="Subtract from" sid="9117322981275545" type="System">
+                    <param id="0" name="Variable">ammo</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="9809962248005214">
+            <conditions>
+                <condition id="3" name="On touched object" sid="998135790452535" type="Touch">
+                    <param id="0" name="Object">bizz2</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="8" name="Open URL in new window" sid="1973407704472121" type="Browser">
+                    <param id="0" name="URL">&quot;http://bizarri.pl&quot;</param>
+                    <param id="1" name="Tag">&quot;Author&apos;s website&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="3260827896447833">
+            <conditions>
+                <condition id="1" name="On any touch end" sid="579922030639741" type="Touch" />
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="1565677306803813" type="System">
+                    <param id="0" name="Variable">touch</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="4736275458536206">
+            <conditions>
+                <condition id="3" name="On touched object" sid="4943965484543314" type="Touch">
+                    <param id="0" name="Object">pauza</param>
+                </condition>
+                <condition id="-14" name="Compare variable" sid="4653071884118523" type="System">
+                    <param id="0" name="Variable">pause1</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="8707788208572769" type="System">
+                    <param id="0" name="Variable">pause1</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="-13" name="Set time scale" sid="8005775807092467" type="System">
+                    <param id="0" name="Time scale">0</param>
+                </action>
+                <action id="-15" name="Set visible" sid="8373461085656747" type="play">
+                    <param id="0" name="Visibility">1</param>
+                </action>
+                <action id="-15" name="Set visible" sid="4882185700566607" type="pauza">
+                    <param id="0" name="Visibility">0</param>
+                </action>
+                <action id="-3" name="Create object" sid="3374843365350946" type="System">
+                    <param id="0" name="Object to create">textpaused</param>
+                    <param id="1" name="Layer">3</param>
+                    <param id="2" name="X">400</param>
+                    <param id="3" name="Y">225</param>
+                </action>
+                <action id="-3" name="Create object" sid="1605992866368445" type="System">
+                    <param id="0" name="Object to create">muzikaaa</param>
+                    <param id="1" name="Layer">3</param>
+                    <param id="2" name="X">400</param>
+                    <param id="3" name="Y">180</param>
+                </action>
+                <action id="-3" name="Create object" sid="2288036942647334" type="System">
+                    <param id="0" name="Object to create">ofyfy</param>
+                    <param id="1" name="Layer">3</param>
+                    <param id="2" name="X">500</param>
+                    <param id="3" name="Y">180</param>
+                </action>
+                <action id="-15" name="Set visible" sid="9571310396544805" type="pauza_tlo">
+                    <param id="0" name="Visibility">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="4550725553283958">
+            <conditions>
+                <condition id="3" name="On touched object" sid="5647598262407386" type="Touch">
+                    <param id="0" name="Object">play</param>
+                </condition>
+                <condition id="-14" name="Compare variable" sid="5482862952450054" type="System">
+                    <param id="0" name="Variable">pause1</param>
+                    <param id="1" name="Comparison">1</param>
+                    <param id="2" name="Value">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="9480503402509997" type="System">
+                    <param id="0" name="Variable">pause1</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-13" name="Set time scale" sid="6018906061626181" type="System">
+                    <param id="0" name="Time scale">1</param>
+                </action>
+                <action id="-15" name="Set visible" sid="2141243695594179" type="play">
+                    <param id="0" name="Visibility">0</param>
+                </action>
+                <action id="-15" name="Set visible" sid="330743918913612" type="pauza">
+                    <param id="0" name="Visibility">1</param>
+                </action>
+                <action id="-9" name="Destroy" sid="7200810527297297" type="textpaused" />
+                <action id="-9" name="Destroy" sid="9729794218921508" type="muzikaaa" />
+                <action id="-9" name="Destroy" sid="5612541494019369" type="ofyfy" />
+                <action id="-15" name="Set visible" sid="5356811056225924" type="pauza_tlo">
+                    <param id="0" name="Visibility">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="7700875185836878">
+            <conditions>
+                <condition id="3" name="On touched object" sid="4334004205210999" type="Touch">
+                    <param id="0" name="Object">playagain</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-13" name="Set time scale" sid="9099845616793128" type="System">
+                    <param id="0" name="Time scale">1</param>
+                </action>
+                <action id="-9" name="Set value" sid="2934054008727041" type="System">
+                    <param id="0" name="Variable">pause1</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-21" name="Reset global variables" sid="6324377784590476" type="System" />
+                <action id="-26" name="Restart layout" sid="1255175999990657" type="System" />
+            </actions>
+        </event-block>
+        <event-block sid="7915186501057634">
+            <conditions>
+                <condition id="3" name="On touched object" sid="5581044883815365" type="Touch">
+                    <param id="0" name="Object">shareresults</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="8" name="Open URL in new window" sid="3757612978718976" type="Browser">
+                    <param id="0" name="URL">&quot;https://www.facebook.com/DannyBizarri&quot;</param>
+                    <param id="1" name="Tag">&quot;NewWindow&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="2372767095706926">
+            <conditions>
+                <condition id="3" name="On touched object" sid="9026087709996013" type="Touch">
+                    <param id="0" name="Object">muzikaaa</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="3" name="Set volume" sid="9064631541859066" type="Audio">
+                    <param id="0" name="Tag">&quot;zuo&quot;</param>
+                    <param id="1" name="dB">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="119009054005555">
+            <conditions>
+                <condition id="3" name="On touched object" sid="5986660595303426" type="Touch">
+                    <param id="0" name="Object">ofyfy</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="3" name="Set volume" sid="6798114118733416" type="Audio">
+                    <param id="0" name="Tag">&quot;zuo&quot;</param>
+                    <param id="1" name="dB">-100</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="8665143610336019">
+            <conditions>
+                <condition id="3" name="On touched object" sid="5584441718667961" type="Touch">
+                    <param id="0" name="Object">share2</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="4" name="Show share UI" sid="2207521834645021" type="Windows8" />
+            </actions>
+        </event-block>
+        <event-block sid="5553084330031339">
+            <conditions>
+                <condition id="3" name="On touched object" sid="6511541261535372" type="Touch">
+                    <param id="0" name="Object">buyhp</param>
+                </condition>
+                <condition id="-14" name="Compare variable" sid="9383146152717122" type="System">
+                    <param id="0" name="Variable">money</param>
+                    <param id="1" name="Comparison">5</param>
+                    <param id="2" name="Value">cena</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-10" name="Add to" sid="5512031078961413" type="System">
+                    <param id="0" name="Variable">klikow</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="-11" name="Subtract from" sid="4440132446807435" type="System">
+                    <param id="0" name="Variable">money</param>
+                    <param id="1" name="Value">cena</param>
+                </action>
+                <action id="-9" name="Set value" sid="1997904773179877" type="System">
+                    <param id="0" name="Variable">cena</param>
+                    <param id="1" name="Value">klikow*800</param>
+                </action>
+                <action id="-10" name="Add to" sid="9106645088611" type="System">
+                    <param id="0" name="Variable">HP</param>
+                    <param id="1" name="Value">100</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="5522386474257167">
+            <conditions>
+                <condition id="-8" name="Compare two values" sid="6824864073499865" type="System">
+                    <param id="0" name="First value">level</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Second value">5</param>
+                </condition>
+                <condition id="-8" name="Compare two values" sid="7576584863992771" type="System">
+                    <param id="0" name="First value">boss</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Second value">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-3" name="Create object" sid="770244052155059" type="System">
+                    <param id="0" name="Object to create">boss1</param>
+                    <param id="1" name="Layer">2</param>
+                    <param id="2" name="X">800</param>
+                    <param id="3" name="Y">200</param>
+                </action>
+                <action id="-10" name="Add to" sid="3482784290353856" type="System">
+                    <param id="0" name="Variable">boss</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="0" name="Set text" sid="1381104592514325" type="bossHP">
+                    <param id="0" name="Text">&quot;Boss HP: &quot;&amp;boss1.boss_hp</param>
+                </action>
+                <action id="-15" name="Set visible" sid="5580286228400126" type="bossHP">
+                    <param id="0" name="Visibility">1</param>
+                </action>
+                <action id="-9" name="Set value" sid="8300892952903693" type="System">
+                    <param id="0" name="Variable">zawsze_0</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="7054461179785831">
+            <conditions>
+                <condition id="-8" name="Compare two values" sid="5874543380401343" type="System">
+                    <param id="0" name="First value">boss1.X</param>
+                    <param id="1" name="Comparison">3</param>
+                    <param id="2" name="Second value">450</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action behavior="Bullet" id="0" name="Set speed" sid="3283163145124965" type="boss1">
+                    <param id="0" name="Speed">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="4165028631334641">
+            <conditions>
+                <condition id="-6" name="Every X seconds" sid="2124431958612335" type="System">
+                    <param id="0" name="Interval (seconds)">3</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Spawn another object" sid="9463098194843984" type="boss1">
+                    <param id="0" name="Object">boss_bullet</param>
+                    <param id="1" name="Layer">2</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+                <action id="0" name="Spawn another object" sid="993427908905022" type="boss1">
+                    <param id="0" name="Object">dymu</param>
+                    <param id="1" name="Layer">2</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+                <action id="-16" name="Wait" sid="9545376803460684" type="System">
+                    <param id="0" name="Seconds">0.6</param>
+                </action>
+                <action id="0" name="Spawn another object" sid="6408176419338098" type="boss1">
+                    <param id="0" name="Object">boss_bullet</param>
+                    <param id="1" name="Layer">2</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+                <action id="0" name="Spawn another object" sid="8817039882826362" type="boss1">
+                    <param id="0" name="Object">dymu</param>
+                    <param id="1" name="Layer">2</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+                <action id="-16" name="Wait" sid="6740204163148448" type="System">
+                    <param id="0" name="Seconds">0.6</param>
+                </action>
+                <action id="0" name="Spawn another object" sid="4917716899351932" type="boss1">
+                    <param id="0" name="Object">boss_bullet</param>
+                    <param id="1" name="Layer">2</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+                <action id="0" name="Spawn another object" sid="2091935763856926" type="boss1">
+                    <param id="0" name="Object">dymu</param>
+                    <param id="1" name="Layer">2</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="7477821069706672">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="8495651487044551" type="bullet">
+                    <param id="0" name="Object">boss1</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-12" name="Subtract from" sid="7836065171253282" type="boss1">
+                    <param id="0" name="Instance variable">boss_hp</param>
+                    <param id="1" name="Value">17</param>
+                </action>
+                <action id="-10" name="Add to" sid="2655163367641856" type="System">
+                    <param id="0" name="Variable">ammo</param>
+                    <param id="1" name="Value">random(1,2)</param>
+                </action>
+                <action id="0" name="Spawn another object" sid="8314114641476685" type="bullet">
+                    <param id="0" name="Object">Sprite2</param>
+                    <param id="1" name="Layer">2</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+                <action id="-9" name="Destroy" sid="3237047655904018" type="bullet" />
+                <action id="0" name="Set text" sid="9145421374886277" type="bossHP">
+                    <param id="0" name="Text">&quot;Boss HP: &quot;&amp;boss1.boss_hp</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="5598942504169873">
+            <conditions>
+                <condition id="-8" name="Compare two values" sid="3902282436833073" type="System">
+                    <param id="0" name="First value">boss1.boss_hp</param>
+                    <param id="1" name="Comparison">3</param>
+                    <param id="2" name="Second value">0</param>
+                </condition>
+                <condition id="-8" name="Compare two values" sid="2706909478455224" type="System">
+                    <param id="0" name="First value">level</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Second value">5</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Destroy" sid="7006715158146369" type="boss1" />
+                <action id="-9" name="Set value" sid="9715410303344156" type="System">
+                    <param id="0" name="Variable">death</param>
+                    <param id="1" name="Value">1000</param>
+                </action>
+                <action id="0" name="Spawn another object" sid="8182883850665283" type="boss1">
+                    <param id="0" name="Object">bigbang</param>
+                    <param id="1" name="Layer">2</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+                <action id="-15" name="Set visible" sid="9135086118323216" type="bossHP">
+                    <param id="0" name="Visibility">0</param>
+                </action>
+            </actions>
+            <sub-events>
+                <event-block sid="1103637847318442">
+                    <conditions>
+                        <condition id="-8" name="Compare two values" sid="4102436947174382" type="System">
+                            <param id="0" name="First value">zawsze_0</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Second value">1</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Add to" sid="484291385159308" type="System">
+                            <param id="0" name="Variable">points</param>
+                            <param id="1" name="Value">2000</param>
+                        </action>
+                        <action id="-10" name="Add to" sid="8730404760350739" type="System">
+                            <param id="0" name="Variable">money</param>
+                            <param id="1" name="Value">random(450,900)</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="7265357240362474" type="System">
+                            <param id="0" name="Variable">zawsze_0</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="8167149759708787">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="8193624766360666" type="pocisk_big">
+                    <param id="0" name="Object">boss1</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-12" name="Subtract from" sid="3231004677310422" type="boss1">
+                    <param id="0" name="Instance variable">boss_hp</param>
+                    <param id="1" name="Value">45</param>
+                </action>
+                <action id="0" name="Spawn another object" sid="291914244338567" type="pocisk_big">
+                    <param id="0" name="Object">Sprite2</param>
+                    <param id="1" name="Layer">2</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+                <action id="-9" name="Destroy" sid="7194033036548111" type="pocisk_big" />
+                <action id="0" name="Set text" sid="5664977067562309" type="bossHP">
+                    <param id="0" name="Text">&quot;Boss HP: &quot;&amp;boss1.boss_hp</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="893347847117859">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="1657032796720634" type="boss_bullet">
+                    <param id="0" name="Object">bunker</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-11" name="Subtract from" sid="1786040010753649" type="System">
+                    <param id="0" name="Variable">HP</param>
+                    <param id="1" name="Value">random(30,42)</param>
+                </action>
+                <action id="0" name="Spawn another object" sid="2194559883504206" type="boss_bullet">
+                    <param id="0" name="Object">Sprite2</param>
+                    <param id="1" name="Layer">2</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+                <action id="-9" name="Destroy" sid="9001240415384005" type="boss_bullet" />
+            </actions>
+        </event-block>
+        <comment>boss 2</comment>
+        <event-block sid="9761420551876303">
+            <conditions>
+                <condition id="-8" name="Compare two values" sid="1740597448088392" type="System">
+                    <param id="0" name="First value">level</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Second value">10</param>
+                </condition>
+                <condition id="-8" name="Compare two values" sid="998851756420684" type="System">
+                    <param id="0" name="First value">boss</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Second value">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-3" name="Create object" sid="3018079321564506" type="System">
+                    <param id="0" name="Object to create">boss2</param>
+                    <param id="1" name="Layer">2</param>
+                    <param id="2" name="X">800</param>
+                    <param id="3" name="Y">200</param>
+                </action>
+                <action id="-10" name="Add to" sid="6264655914885482" type="System">
+                    <param id="0" name="Variable">boss</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="-15" name="Set visible" sid="1177002658504642" type="bossHP">
+                    <param id="0" name="Visibility">1</param>
+                </action>
+                <action id="-9" name="Set value" sid="6475377285957784" type="System">
+                    <param id="0" name="Variable">zawsze_0</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="0" name="Set text" sid="3215133216620014" type="bossHP">
+                    <param id="0" name="Text">&quot;Boss HP: &quot;&amp;boss2.bosshp</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="6202218771977257">
+            <conditions>
+                <condition id="-8" name="Compare two values" sid="7910151102673346" type="System">
+                    <param id="0" name="First value">boss2.X</param>
+                    <param id="1" name="Comparison">3</param>
+                    <param id="2" name="Second value">450</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action behavior="Bullet" id="0" name="Set speed" sid="7011236310249116" type="boss2">
+                    <param id="0" name="Speed">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="9690679915441883">
+            <conditions>
+                <condition id="-6" name="Every X seconds" sid="6812760413148181" type="System">
+                    <param id="0" name="Interval (seconds)">3</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Spawn another object" sid="2592643200396555" type="boss2">
+                    <param id="0" name="Object">boss_bullet</param>
+                    <param id="1" name="Layer">2</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+                <action id="0" name="Spawn another object" sid="4296843200855397" type="boss2">
+                    <param id="0" name="Object">dymu</param>
+                    <param id="1" name="Layer">2</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+                <action id="-16" name="Wait" sid="7062877473736278" type="System">
+                    <param id="0" name="Seconds">0.6</param>
+                </action>
+                <action id="0" name="Spawn another object" sid="3796379145813709" type="boss2">
+                    <param id="0" name="Object">boss_bullet</param>
+                    <param id="1" name="Layer">2</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+                <action id="0" name="Spawn another object" sid="4073450627325478" type="boss2">
+                    <param id="0" name="Object">dymu</param>
+                    <param id="1" name="Layer">2</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+                <action id="-16" name="Wait" sid="1911267615921624" type="System">
+                    <param id="0" name="Seconds">0.6</param>
+                </action>
+                <action id="0" name="Spawn another object" sid="7303766589588899" type="boss2">
+                    <param id="0" name="Object">boss_bullet</param>
+                    <param id="1" name="Layer">2</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+                <action id="0" name="Spawn another object" sid="3822989218507665" type="boss2">
+                    <param id="0" name="Object">dymu</param>
+                    <param id="1" name="Layer">2</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="2927696077975924">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="1781433710856416" type="bullet">
+                    <param id="0" name="Object">boss2</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-12" name="Subtract from" sid="2778584255021751" type="boss2">
+                    <param id="0" name="Instance variable">bosshp</param>
+                    <param id="1" name="Value">17</param>
+                </action>
+                <action id="0" name="Set text" sid="8476655343478893" type="bossHP">
+                    <param id="0" name="Text">&quot;Boss HP: &quot;&amp;boss2.bosshp</param>
+                </action>
+                <action id="-10" name="Add to" sid="2907808218692461" type="System">
+                    <param id="0" name="Variable">ammo</param>
+                    <param id="1" name="Value">random(1,2)</param>
+                </action>
+                <action id="0" name="Spawn another object" sid="9908747851801259" type="bullet">
+                    <param id="0" name="Object">Sprite2</param>
+                    <param id="1" name="Layer">2</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+                <action id="-9" name="Destroy" sid="6747753576833907" type="bullet" />
+            </actions>
+        </event-block>
+        <event-block sid="4486780152538332">
+            <conditions>
+                <condition id="-8" name="Compare two values" sid="8265736224212216" type="System">
+                    <param id="0" name="First value">boss2.bosshp</param>
+                    <param id="1" name="Comparison">3</param>
+                    <param id="2" name="Second value">0</param>
+                </condition>
+                <condition id="-8" name="Compare two values" sid="9965402719430861" type="System">
+                    <param id="0" name="First value">level</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Second value">10</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Destroy" sid="1611488313863995" type="boss2" />
+                <action id="-9" name="Set value" sid="2816036381416085" type="System">
+                    <param id="0" name="Variable">death</param>
+                    <param id="1" name="Value">5000</param>
+                </action>
+                <action id="0" name="Spawn another object" sid="9165113248293965" type="boss2">
+                    <param id="0" name="Object">bigbang</param>
+                    <param id="1" name="Layer">2</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+                <action id="-15" name="Set visible" sid="3206192173037176" type="bossHP">
+                    <param id="0" name="Visibility">0</param>
+                </action>
+            </actions>
+            <sub-events>
+                <event-block sid="6025999525851123">
+                    <conditions>
+                        <condition id="-8" name="Compare two values" sid="3809530615196475" type="System">
+                            <param id="0" name="First value">zawsze_0</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Second value">1</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Add to" sid="2083212988611734" type="System">
+                            <param id="0" name="Variable">points</param>
+                            <param id="1" name="Value">5000</param>
+                        </action>
+                        <action id="-10" name="Add to" sid="1975205854028596" type="System">
+                            <param id="0" name="Variable">money</param>
+                            <param id="1" name="Value">random(1500,3500)</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="9696512021503679" type="System">
+                            <param id="0" name="Variable">zawsze_0</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="3605265774964301">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="7846732612978741" type="pocisk_big">
+                    <param id="0" name="Object">boss2</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-12" name="Subtract from" sid="6906331035437253" type="boss2">
+                    <param id="0" name="Instance variable">bosshp</param>
+                    <param id="1" name="Value">45</param>
+                </action>
+                <action id="0" name="Spawn another object" sid="5045148009463025" type="pocisk_big">
+                    <param id="0" name="Object">Sprite2</param>
+                    <param id="1" name="Layer">2</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+                <action id="-9" name="Destroy" sid="2596258009950391" type="pocisk_big" />
+                <action id="0" name="Set text" sid="9662419177321878" type="bossHP">
+                    <param id="0" name="Text">&quot;Boss HP: &quot;&amp;boss2.bosshp</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>boss 3</comment>
+        <event-block sid="1033337681241815">
+            <conditions>
+                <condition id="-8" name="Compare two values" sid="3834804874519222" type="System">
+                    <param id="0" name="First value">level</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Second value">15</param>
+                </condition>
+                <condition id="-8" name="Compare two values" sid="2960474458551137" type="System">
+                    <param id="0" name="First value">boss</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Second value">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-3" name="Create object" sid="7682244565299715" type="System">
+                    <param id="0" name="Object to create">boss3</param>
+                    <param id="1" name="Layer">2</param>
+                    <param id="2" name="X">800</param>
+                    <param id="3" name="Y">200</param>
+                </action>
+                <action id="0" name="Set text" sid="4287257980150667" type="bossHP">
+                    <param id="0" name="Text">&quot;Boss HP: &quot;&amp;boss3.boss_hp</param>
+                </action>
+                <action id="-10" name="Add to" sid="9195437106776457" type="System">
+                    <param id="0" name="Variable">boss</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="-15" name="Set visible" sid="8495294990008098" type="bossHP">
+                    <param id="0" name="Visibility">1</param>
+                </action>
+                <action id="-9" name="Set value" sid="4865555257767217" type="System">
+                    <param id="0" name="Variable">zawsze_0</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="3003459833952659">
+            <conditions>
+                <condition id="-8" name="Compare two values" sid="3088803123607495" type="System">
+                    <param id="0" name="First value">boss3.X</param>
+                    <param id="1" name="Comparison">3</param>
+                    <param id="2" name="Second value">450</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action behavior="Bullet" id="0" name="Set speed" sid="6886632271859285" type="boss3">
+                    <param id="0" name="Speed">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="8492047859604412">
+            <conditions>
+                <condition id="-6" name="Every X seconds" sid="8794233818303218" type="System">
+                    <param id="0" name="Interval (seconds)">3</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Spawn another object" sid="730985973328" type="boss3">
+                    <param id="0" name="Object">boss_bullet</param>
+                    <param id="1" name="Layer">2</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+                <action id="0" name="Spawn another object" sid="7912096337480721" type="boss3">
+                    <param id="0" name="Object">dymu</param>
+                    <param id="1" name="Layer">2</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+                <action id="-16" name="Wait" sid="8878974994850862" type="System">
+                    <param id="0" name="Seconds">0.6</param>
+                </action>
+                <action id="0" name="Spawn another object" sid="4901706255267938" type="boss3">
+                    <param id="0" name="Object">boss_bullet</param>
+                    <param id="1" name="Layer">2</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+                <action id="0" name="Spawn another object" sid="834853846117997" type="boss3">
+                    <param id="0" name="Object">dymu</param>
+                    <param id="1" name="Layer">2</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+                <action id="-16" name="Wait" sid="3095416851982569" type="System">
+                    <param id="0" name="Seconds">0.6</param>
+                </action>
+                <action id="0" name="Spawn another object" sid="265878350233555" type="boss3">
+                    <param id="0" name="Object">boss_bullet</param>
+                    <param id="1" name="Layer">2</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+                <action id="0" name="Spawn another object" sid="7804257880757013" type="boss3">
+                    <param id="0" name="Object">dymu</param>
+                    <param id="1" name="Layer">2</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="7110170540281591">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="2673053449288118" type="bullet">
+                    <param id="0" name="Object">boss3</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-12" name="Subtract from" sid="2559202321981886" type="boss3">
+                    <param id="0" name="Instance variable">boss_hp</param>
+                    <param id="1" name="Value">24</param>
+                </action>
+                <action id="0" name="Set text" sid="5891617319758733" type="bossHP">
+                    <param id="0" name="Text">&quot;Boss HP: &quot;&amp;boss3.boss_hp</param>
+                </action>
+                <action id="-10" name="Add to" sid="2787475715801643" type="System">
+                    <param id="0" name="Variable">ammo</param>
+                    <param id="1" name="Value">random(1,2)</param>
+                </action>
+                <action id="0" name="Spawn another object" sid="8142197127147617" type="bullet">
+                    <param id="0" name="Object">Sprite2</param>
+                    <param id="1" name="Layer">2</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+                <action id="-9" name="Destroy" sid="8728292237302588" type="bullet" />
+            </actions>
+        </event-block>
+        <event-block sid="8093130154566838">
+            <conditions>
+                <condition id="-8" name="Compare two values" sid="6417949646669396" type="System">
+                    <param id="0" name="First value">boss3.boss_hp</param>
+                    <param id="1" name="Comparison">3</param>
+                    <param id="2" name="Second value">0</param>
+                </condition>
+                <condition id="-8" name="Compare two values" sid="6594567617566109" type="System">
+                    <param id="0" name="First value">level</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Second value">15</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Destroy" sid="3969490441519217" type="boss3" />
+                <action id="-9" name="Set value" sid="2203652088976725" type="System">
+                    <param id="0" name="Variable">death</param>
+                    <param id="1" name="Value">6000</param>
+                </action>
+                <action id="0" name="Spawn another object" sid="5414252653907749" type="boss3">
+                    <param id="0" name="Object">bigbang</param>
+                    <param id="1" name="Layer">2</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+                <action id="-15" name="Set visible" sid="9014729818097678" type="bossHP">
+                    <param id="0" name="Visibility">0</param>
+                </action>
+            </actions>
+            <sub-events>
+                <event-block sid="1341894006187087">
+                    <conditions>
+                        <condition id="-8" name="Compare two values" sid="2371532833330799" type="System">
+                            <param id="0" name="First value">zawsze_0</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Second value">1</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Add to" sid="1681016862230419" type="System">
+                            <param id="0" name="Variable">points</param>
+                            <param id="1" name="Value">10000</param>
+                        </action>
+                        <action id="-10" name="Add to" sid="9921463107576248" type="System">
+                            <param id="0" name="Variable">money</param>
+                            <param id="1" name="Value">random(7000,15000)</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="3808591463513533" type="System">
+                            <param id="0" name="Variable">zawsze_0</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="201231257121507">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="3408848754529152" type="pocisk_big">
+                    <param id="0" name="Object">boss3</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-12" name="Subtract from" sid="2953198574077198" type="boss3">
+                    <param id="0" name="Instance variable">boss_hp</param>
+                    <param id="1" name="Value">45</param>
+                </action>
+                <action id="0" name="Set text" sid="5207393493871853" type="bossHP">
+                    <param id="0" name="Text">&quot;Boss HP: &quot;&amp;boss3.boss_hp</param>
+                </action>
+                <action id="0" name="Spawn another object" sid="4458777340707872" type="pocisk_big">
+                    <param id="0" name="Object">Sprite2</param>
+                    <param id="1" name="Layer">2</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+                <action id="-9" name="Destroy" sid="557914359065278" type="pocisk_big" />
+            </actions>
+        </event-block>
+        <event-block sid="3731834115987098">
+            <conditions>
+                <condition id="-8" name="Compare two values" sid="5055599614544839" type="System">
+                    <param id="0" name="First value">level</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Second value">15</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Set text" sid="9276391116405571" type="info">
+                    <param id="0" name="Text">&quot;This is the last round! Congratulations :) &quot;</param>
+                </action>
+                <action id="-16" name="Wait" sid="181842734918579" type="System">
+                    <param id="0" name="Seconds">10.0</param>
+                </action>
+                <action id="0" name="Set text" sid="1376058554084099" type="info">
+                    <param id="0" name="Text">&quot;You have almost finished the game ^^&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="1576990502967413">
+            <conditions>
+                <condition id="-14" name="Compare variable" sid="6498544633117882" type="System">
+                    <param id="0" name="Variable">pause1</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-13" name="Set time scale" sid="5363295550407973" type="System">
+                    <param id="0" name="Time scale">1.0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="9585495696676753">
+            <conditions>
+                <condition id="-14" name="Compare variable" sid="7296517357191032" type="System">
+                    <param id="0" name="Variable">ammo</param>
+                    <param id="1" name="Comparison">2</param>
+                    <param id="2" name="Value">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="9509076751235972" type="System">
+                    <param id="0" name="Variable">ammo</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+            </actions>
+        </event-block>
+    </events>
+</c2eventsheet>

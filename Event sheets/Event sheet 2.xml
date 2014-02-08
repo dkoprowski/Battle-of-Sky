@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>Event sheet 2</name>
+    <events>
+        <variable constant="0" name="music1" sid="5550265907080831" static="0" type="number">1</variable>
+        <event-block sid="4829059860136315">
+            <conditions>
+                <condition disabled="1" id="-1" name="Every tick" sid="6638156688662721" type="System" />
+            </conditions>
+            <actions>
+                <action disabled="1" id="5" name="Set web font" sid="6424833572421265" type="stargame">
+                    <param id="0" name="Family name">&quot;Denk One&quot;</param>
+                    <param id="1" name="CSS URL">&quot;http://fonts.googleapis.com/css?family=Denk+One&quot;</param>
+                </action>
+                <action disabled="1" id="5" name="Set web font" sid="9198357857235599" type="results">
+                    <param id="0" name="Family name">&quot;Denk One&quot;</param>
+                    <param id="1" name="CSS URL">&quot;http://fonts.googleapis.com/css?family=Denk+One&quot;</param>
+                </action>
+                <action disabled="1" id="5" name="Set web font" sid="4896862014628006" type="quit">
+                    <param id="0" name="Family name">&quot;Denk One&quot;</param>
+                    <param id="1" name="CSS URL">&quot;http://fonts.googleapis.com/css?family=Denk+One&quot;</param>
+                </action>
+                <action id="4" name="Set font color" sid="1620295919214628" type="stargame">
+                    <param id="0" name="Color">rgb(0, 153,255)</param>
+                </action>
+                <action id="4" name="Set font color" sid="6161593191805373" type="results">
+                    <param id="0" name="Color">rgb(0, 153,255)</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="9971760491292669">
+            <conditions>
+                <condition id="7" name="Cursor is over object" sid="4200973279784359" type="Mouse">
+                    <param id="0" name="Object">stargame</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="4" name="Set font color" sid="4835893258196728" type="stargame">
+                    <param id="0" name="Color">rgb(0, 0, 0)</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="1090321172539364">
+            <conditions>
+                <condition id="7" name="Cursor is over object" sid="5751514095451849" type="Mouse">
+                    <param id="0" name="Object">results</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="4" name="Set font color" sid="3117224053298798" type="results">
+                    <param id="0" name="Color">rgb(0, 0, 0)</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="5908178726791397">
+            <conditions>
+                <condition id="6" name="On object clicked" sid="9623848686670597" type="Mouse">
+                    <param id="0" name="Mouse button">0</param>
+                    <param id="1" name="Click type">0</param>
+                    <param id="2" name="Object clicked">stargame</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-2" name="Go to layout" sid="4955707959344638" type="System">
+                    <param id="0" name="Layout">gra</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="1810409750922032">
+            <conditions>
+                <condition id="6" name="On object clicked" sid="2509233257154022" type="Mouse">
+                    <param id="0" name="Mouse button">0</param>
+                    <param id="1" name="Click type">0</param>
+                    <param id="2" name="Object clicked">bizz1</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="8" name="Open URL in new window" sid="5519178662581514" type="Browser">
+                    <param id="0" name="URL">&quot;http://bizarri.pl&quot;</param>
+                    <param id="1" name="Tag">&quot;Author&apos;s website&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="4974074946887405">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="8340145800422561" type="System" />
+            </conditions>
+            <actions>
+                <action id="0" name="Play" sid="1558229914888128" type="Audio">
+                    <param id="0" name="Audio file">zelko</param>
+                    <param id="2" name="Loop">1</param>
+                    <param id="3" name="Volume">0</param>
+                    <param id="1" name="Tag (optional)">&quot;zuo&quot;</param>
+                </action>
+                <action id="5" name="Set web font" sid="692081777447531" type="stargame">
+                    <param id="0" name="Family name">&quot;komika_axisregular&quot;</param>
+                    <param id="1" name="CSS URL">&quot;stylesheet.css&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="6611615215209384">
+            <conditions>
+                <condition id="3" name="On touched object" sid="8066802415601851" type="Touch">
+                    <param id="0" name="Object">stargame</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-2" name="Go to layout" sid="3121247779784563" type="System">
+                    <param id="0" name="Layout">gra</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="9447047646353796">
+            <conditions>
+                <condition id="3" name="On touched object" sid="227244625791193" type="Touch">
+                    <param id="0" name="Object">bizz1</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="8" name="Open URL in new window" sid="1417180837191259" type="Browser">
+                    <param id="0" name="URL">&quot;http://bizarri.pl&quot;</param>
+                    <param id="1" name="Tag">&quot;Author&apos;s website&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+    </events>
+</c2eventsheet>
