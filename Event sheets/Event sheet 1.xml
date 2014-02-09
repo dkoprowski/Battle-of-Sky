@@ -15,8 +15,8 @@
         <variable constant="0" name="ilosc" sid="9180582756207551" static="0" type="number">12</variable>
         <variable constant="0" name="death" sid="9430631890464835" static="0" type="number">0</variable>
         <variable constant="0" name="licznik_zolnierzy" sid="7027297940414031" static="0" type="number">1</variable>
-        <variable constant="0" name="level" sid="7188325166007774" static="0" type="number">1</variable>
-        <variable constant="0" name="HP" sid="5405910041899955" static="0" type="number">200</variable>
+        <variable constant="0" name="level" sid="7188325166007774" static="0" type="number">6</variable>
+        <variable constant="0" name="HP" sid="5405910041899955" static="0" type="number">1100</variable>
         <variable constant="0" name="points" sid="1745666837664095" static="0" type="number">0</variable>
         <comment>When clicking the &apos;Share&apos; button, prompt the share user interface. Windows 8 will then call &apos;On Share&apos;, asking for what content should be shared. Then we respond with &apos;Share text&apos; and pass &apos;Hello world&apos; to share. You can also share links and HTML.</comment>
         <event-block sid="610424642104385">
@@ -92,7 +92,7 @@
                     <param id="1" name="Y">Mouse.Y</param>
                 </action>
                 <action id="-22" name="Set angle toward position" sid="8156242405067251" type="enemy">
-                    <param id="0" name="X">bunker.X</param>
+                    <param id="0" name="X">cel_samolotow.X</param>
                     <param id="1" name="Y">enemy.Y</param>
                 </action>
                 <action id="0" name="Set text" sid="4421856606693218" type="Text_level">
@@ -130,16 +130,22 @@
                     <param id="0" name="Text">&quot;Ammo: &quot;&amp;int(ammo)</param>
                 </action>
                 <action id="-22" name="Set angle toward position" sid="4101305395635614" type="boss1">
-                    <param id="0" name="X">200</param>
+                    <param id="0" name="X">cel_samolotow.X</param>
                     <param id="1" name="Y">boss1.Y</param>
                 </action>
                 <action id="-22" name="Set angle toward position" sid="4121038574268322" type="boss2">
-                    <param id="0" name="X">200</param>
+                    <param id="0" name="X">cel_samolotow.X</param>
                     <param id="1" name="Y">boss2.Y</param>
                 </action>
                 <action id="-22" name="Set angle toward position" sid="8630871819378958" type="boss3">
-                    <param id="0" name="X">200</param>
+                    <param id="0" name="X">cel_samolotow.X</param>
                     <param id="1" name="Y">boss3.Y</param>
+                </action>
+                <action id="-8" name="Set angle" sid="7987864758840943" type="enemy_bullet">
+                    <param id="0" name="Angle">90</param>
+                </action>
+                <action id="-8" name="Set angle" sid="5769056137975015" type="boss_bullet">
+                    <param id="0" name="Angle">90</param>
                 </action>
             </actions>
         </event-block>
@@ -174,7 +180,7 @@
                     <param id="0" name="Object to create">enemy</param>
                     <param id="1" name="Layer">2</param>
                     <param id="2" name="X">850</param>
-                    <param id="3" name="Y">random(32,430)</param>
+                    <param id="3" name="Y">random(32,190)</param>
                 </action>
                 <action id="-10" name="Add to" sid="6805235885317689" type="System">
                     <param id="0" name="Variable">licznik_zolnierzy</param>
@@ -185,56 +191,105 @@
         <event-block sid="6358615475426172">
             <conditions>
                 <condition id="0" name="On collision with another object" sid="7620558132432368" type="enemy">
-                    <param id="0" name="Object">bunker</param>
+                    <param id="0" name="Object">cel_samolotow</param>
                 </condition>
             </conditions>
             <actions>
-                <action id="0" name="Spawn another object" sid="1972201469124789" type="enemy">
-                    <param id="0" name="Object">Sprite2</param>
-                    <param id="1" name="Layer">2</param>
-                    <param id="2" name="Image point">0</param>
-                </action>
-                <action id="-9" name="Destroy" sid="1918908832860879" type="enemy" />
-                <action id="-10" name="Add to" sid="4640890524996144" type="System">
+                <action id="-10" name="Add to" sid="7971526590347855" type="System">
                     <param id="0" name="Variable">death</param>
                     <param id="1" name="Value">1</param>
                 </action>
-                <action id="-11" name="Subtract from" sid="3404211640581246" type="System">
-                    <param id="0" name="Variable">HP</param>
-                    <param id="1" name="Value">random(25,32)</param>
-                </action>
             </actions>
         </event-block>
-        <event-block sid="4363240208584005">
+        <event-block sid="8756449389905873">
             <conditions>
-                <condition id="0" name="On collision with another object" sid="8491503118945287" type="bullet">
+                <condition id="0" name="On collision with another object" sid="6541469476654455" type="bullet">
                     <param id="0" name="Object">enemy</param>
                 </condition>
             </conditions>
             <actions>
-                <action id="-10" name="Add to" sid="1574778616735992" type="System">
-                    <param id="0" name="Variable">points</param>
-                    <param id="1" name="Value">10+level*2</param>
+                <action id="-11" name="Add to" sid="9183274580593561" type="enemy">
+                    <param id="0" name="Instance variable">hit</param>
+                    <param id="1" name="Value">1</param>
                 </action>
+                <action id="0" name="Spawn another object" sid="8651714915635832" type="enemy">
+                    <param id="0" name="Object">Sprite2</param>
+                    <param id="1" name="Layer">2</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+                <action id="-9" name="Destroy" sid="2042250711327633" type="bullet" />
+            </actions>
+            <sub-events>
+                <event-block sid="7028586150189285">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="4338309784165222" type="enemy">
+                            <param id="0" name="Instance variable">hit</param>
+                            <param id="1" name="Comparison">5</param>
+                            <param id="2" name="Value">2</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Spawn another object" sid="4023745014491574" type="enemy">
+                            <param id="0" name="Object">Sprite2</param>
+                            <param id="1" name="Layer">2</param>
+                            <param id="2" name="Image point">0</param>
+                        </action>
+                        <action id="-10" name="Add to" sid="4783490979986028" type="System">
+                            <param id="0" name="Variable">points</param>
+                            <param id="1" name="Value">10+level*2</param>
+                        </action>
+                        <action id="-10" name="Add to" sid="1433446408564901" type="System">
+                            <param id="0" name="Variable">ammo</param>
+                            <param id="1" name="Value">random(1,4)</param>
+                        </action>
+                        <action id="-10" name="Add to" sid="535330093044849" type="System">
+                            <param id="0" name="Variable">money</param>
+                            <param id="1" name="Value">random(5,15)</param>
+                        </action>
+                        <action id="-10" name="Add to" sid="4566336387919325" type="System">
+                            <param id="0" name="Variable">death</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="-9" name="Destroy" sid="4692951577400201" type="enemy" />
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block disabled="1" sid="4363240208584005">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="8491503118945287" type="bullet">
+                    <param id="0" name="Object">enemy</param>
+                </condition>
+                <condition id="-7" name="Compare instance variable" sid="2326701256080521" type="enemy">
+                    <param id="0" name="Instance variable">hit</param>
+                    <param id="1" name="Comparison">5</param>
+                    <param id="2" name="Value">1</param>
+                </condition>
+            </conditions>
+            <actions>
                 <action id="0" name="Spawn another object" sid="9658879495602834" type="enemy">
                     <param id="0" name="Object">Sprite2</param>
                     <param id="1" name="Layer">2</param>
                     <param id="2" name="Image point">0</param>
                 </action>
-                <action id="-9" name="Destroy" sid="6354481414547356" type="enemy" />
+                <action id="-10" name="Add to" sid="1574778616735992" type="System">
+                    <param id="0" name="Variable">points</param>
+                    <param id="1" name="Value">10+level*2</param>
+                </action>
                 <action id="-9" name="Destroy" sid="5972309566215864" type="bullet" />
-                <action id="-10" name="Add to" sid="1009394487479992" type="System">
-                    <param id="0" name="Variable">death</param>
-                    <param id="1" name="Value">1</param>
+                <action id="-10" name="Add to" sid="7685687624700026" type="System">
+                    <param id="0" name="Variable">ammo</param>
+                    <param id="1" name="Value">random(1,4)</param>
                 </action>
                 <action id="-10" name="Add to" sid="7819641300339808" type="System">
                     <param id="0" name="Variable">money</param>
                     <param id="1" name="Value">random(5,15)</param>
                 </action>
-                <action id="-10" name="Add to" sid="7685687624700026" type="System">
-                    <param id="0" name="Variable">ammo</param>
-                    <param id="1" name="Value">random(1,3)</param>
+                <action id="-10" name="Add to" sid="1009394487479992" type="System">
+                    <param id="0" name="Variable">death</param>
+                    <param id="1" name="Value">1</param>
                 </action>
+                <action id="-9" name="Destroy" sid="6354481414547356" type="enemy" />
             </actions>
         </event-block>
         <event-block sid="6404888342476596">
@@ -302,16 +357,6 @@
                 </action>
             </actions>
         </event-block>
-        <event-block sid="6722387390904372">
-            <conditions>
-                <condition id="5" name="On any finished" sid="5790130811234441" type="enemy" />
-            </conditions>
-            <actions>
-                <action id="3" name="Start" sid="9193560446805794" type="enemy">
-                    <param id="0" name="From">1</param>
-                </action>
-            </actions>
-        </event-block>
         <comment>RESTART LAYOUTU</comment>
         <event-block sid="8546396208288811">
             <conditions>
@@ -375,15 +420,31 @@
         <event-block sid="6766845365706061">
             <conditions>
                 <condition id="-6" name="Every X seconds" sid="3104804399949218" type="System">
-                    <param id="0" name="Interval (seconds)">random(1,2.5)</param>
+                    <param id="0" name="Interval (seconds)">random(1.5,3.2)</param>
                 </condition>
-                <condition id="-1" name="Compare X" sid="1282232920744393" type="enemy">
+                <condition id="-1" name="Compare X" sid="1301440388107059" type="enemy">
                     <param id="0" name="Comparison">3</param>
-                    <param id="1" name="X co-ordinate">515</param>
+                    <param id="1" name="X co-ordinate">700</param>
                 </condition>
             </conditions>
             <actions>
                 <action id="0" name="Spawn another object" sid="5304676088490031" type="enemy">
+                    <param id="0" name="Object">enemy_bullet</param>
+                    <param id="1" name="Layer">2</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+                <action id="-16" name="Wait" sid="8131483126700436" type="System">
+                    <param id="0" name="Seconds">0.2</param>
+                </action>
+                <action id="0" name="Spawn another object" sid="8264096141344313" type="enemy">
+                    <param id="0" name="Object">enemy_bullet</param>
+                    <param id="1" name="Layer">2</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+                <action id="-16" name="Wait" sid="2316541494471829" type="System">
+                    <param id="0" name="Seconds">0.2</param>
+                </action>
+                <action id="0" name="Spawn another object" sid="2267844818171769" type="enemy">
                     <param id="0" name="Object">enemy_bullet</param>
                     <param id="1" name="Layer">2</param>
                     <param id="2" name="Image point">0</param>
@@ -400,6 +461,11 @@
                 <action id="-11" name="Subtract from" sid="6097261630371522" type="System">
                     <param id="0" name="Variable">HP</param>
                     <param id="1" name="Value">random(5,12)</param>
+                </action>
+                <action id="0" name="Spawn another object" sid="8901452990720146" type="enemy_bullet">
+                    <param id="0" name="Object">Sprite2</param>
+                    <param id="1" name="Layer">2</param>
+                    <param id="2" name="Image point">0</param>
                 </action>
                 <action id="-9" name="Destroy" sid="5853900955154621" type="enemy_bullet" />
             </actions>
@@ -444,11 +510,7 @@
                     <param id="1" name="Layer">2</param>
                     <param id="2" name="Image point">0</param>
                 </action>
-                <action id="-9" name="Destroy" sid="7076047744183723" type="enemy" />
-                <action id="-10" name="Add to" sid="8094664361970925" type="System">
-                    <param id="0" name="Variable">death</param>
-                    <param id="1" name="Value">1</param>
-                </action>
+                <action id="-9" name="Destroy" sid="7859239708492026" type="enemy" />
                 <action id="-10" name="Add to" sid="6594229492173883" type="System">
                     <param id="0" name="Variable">money</param>
                     <param id="1" name="Value">random(3,10)</param>
@@ -456,6 +518,10 @@
                 <action id="-10" name="Add to" sid="1684500320610868" type="System">
                     <param id="0" name="Variable">ammo</param>
                     <param id="1" name="Value">random(0,2)</param>
+                </action>
+                <action id="-10" name="Add to" sid="556395569208423" type="System">
+                    <param id="0" name="Variable">death</param>
+                    <param id="1" name="Value">1</param>
                 </action>
             </actions>
         </event-block>
@@ -478,9 +544,6 @@
                 <action behavior="Turret" id="1" name="Add object to target" sid="4295173808983152" type="dzialo">
                     <param id="0" name="Target">enemy</param>
                 </action>
-                <action behavior="Turret" id="1" name="Add object to target" sid="5150837871295089" type="dzialo">
-                    <param id="0" name="Target">tank</param>
-                </action>
                 <action behavior="Turret" id="3" name="Unacquire target" sid="8503577221385011" type="dzialo" />
             </actions>
         </event-block>
@@ -491,157 +554,6 @@
             <actions>
                 <action id="-8" name="Set angle" sid="7722996928632323" type="luska">
                     <param id="0" name="Angle">player.Angle+90</param>
-                </action>
-            </actions>
-        </event-block>
-        <event-block sid="2490179613999642">
-            <conditions>
-                <condition id="-6" name="Every X seconds" sid="8961192379934649" type="System">
-                    <param id="0" name="Interval (seconds)">random(15,28)</param>
-                </condition>
-            </conditions>
-            <actions>
-                <action id="-3" name="Create object" sid="2015347556965115" type="System">
-                    <param id="0" name="Object to create">tank</param>
-                    <param id="1" name="Layer">2</param>
-                    <param id="2" name="X">850</param>
-                    <param id="3" name="Y">random(32,430)</param>
-                </action>
-            </actions>
-        </event-block>
-        <event-block sid="3439955114744685">
-            <conditions>
-                <condition id="0" name="On collision with another object" sid="7389846123871429" type="pocisk_big">
-                    <param id="0" name="Object">tank</param>
-                </condition>
-            </conditions>
-            <actions>
-                <action id="-12" name="Subtract from" sid="6659621934224688" type="tank">
-                    <param id="0" name="Instance variable">HP1</param>
-                    <param id="1" name="Value">49</param>
-                </action>
-                <action id="-9" name="Destroy" sid="5609471156714709" type="pocisk_big" />
-                <action id="0" name="Spawn another object" sid="3459859373509102" type="tank">
-                    <param id="0" name="Object">Sprite2</param>
-                    <param id="1" name="Layer">2</param>
-                    <param id="2" name="Image point">1</param>
-                </action>
-            </actions>
-        </event-block>
-        <event-block sid="9453541276464159">
-            <conditions>
-                <condition id="0" name="On collision with another object" sid="6250154937991844" type="bullet">
-                    <param id="0" name="Object">tank</param>
-                </condition>
-            </conditions>
-            <actions>
-                <action id="-12" name="Subtract from" sid="8234041307242428" type="tank">
-                    <param id="0" name="Instance variable">HP1</param>
-                    <param id="1" name="Value">15</param>
-                </action>
-                <action id="0" name="Spawn another object" sid="2780799196477316" type="tank">
-                    <param id="0" name="Object">Sprite2</param>
-                    <param id="1" name="Layer">2</param>
-                    <param id="2" name="Image point">1</param>
-                </action>
-                <action id="-9" name="Destroy" sid="6118182951861065" type="bullet" />
-            </actions>
-        </event-block>
-        <event-block sid="3633376216440635">
-            <conditions>
-                <condition id="-6" name="Every X seconds" sid="4928627477431939" type="System">
-                    <param id="0" name="Interval (seconds)">random(4,8)</param>
-                </condition>
-                <condition id="-1" name="Compare X" sid="422696549003442" type="tank">
-                    <param id="0" name="Comparison">3</param>
-                    <param id="1" name="X co-ordinate">763</param>
-                </condition>
-            </conditions>
-            <actions>
-                <action id="0" name="Spawn another object" sid="5634041475250992" type="tank">
-                    <param id="0" name="Object">tank_bullet</param>
-                    <param id="1" name="Layer">2</param>
-                    <param id="2" name="Image point">0</param>
-                </action>
-                <action id="0" name="Spawn another object" sid="9781794955988899" type="tank">
-                    <param id="0" name="Object">dymu</param>
-                    <param id="1" name="Layer">2</param>
-                    <param id="2" name="Image point">0</param>
-                </action>
-            </actions>
-        </event-block>
-        <event-block sid="2328458157079976">
-            <conditions>
-                <condition id="0" name="On collision with another object" sid="4366475641398174" type="tank_bullet">
-                    <param id="0" name="Object">bunker</param>
-                </condition>
-            </conditions>
-            <actions>
-                <action id="-11" name="Subtract from" sid="8704023354323508" type="System">
-                    <param id="0" name="Variable">HP</param>
-                    <param id="1" name="Value">75</param>
-                </action>
-                <action id="0" name="Spawn another object" sid="5013804131975112" type="tank_bullet">
-                    <param id="0" name="Object">Sprite2</param>
-                    <param id="1" name="Layer">2</param>
-                    <param id="2" name="Image point">0</param>
-                </action>
-                <action id="-9" name="Destroy" sid="5773905558291124" type="tank_bullet" />
-            </actions>
-        </event-block>
-        <event-block sid="654709272548337">
-            <conditions>
-                <condition id="-1" name="Compare X" sid="6063380199410308" type="tank">
-                    <param id="0" name="Comparison">3</param>
-                    <param id="1" name="X co-ordinate">603</param>
-                </condition>
-            </conditions>
-            <actions>
-                <action behavior="Bullet" id="0" name="Set speed" sid="9103820942988359" type="tank">
-                    <param id="0" name="Speed">0</param>
-                </action>
-            </actions>
-        </event-block>
-        <event-block sid="7289224505008703">
-            <conditions>
-                <condition id="-7" name="Compare instance variable" sid="2529498092490365" type="tank">
-                    <param id="0" name="Instance variable">HP1</param>
-                    <param id="1" name="Comparison">3</param>
-                    <param id="2" name="Value">0</param>
-                </condition>
-            </conditions>
-            <actions>
-                <action id="-10" name="Add to" sid="5598137613319214" type="System">
-                    <param id="0" name="Variable">money</param>
-                    <param id="1" name="Value">random(25,55)</param>
-                </action>
-                <action id="-10" name="Add to" sid="5871276060773649" type="System">
-                    <param id="0" name="Variable">points</param>
-                    <param id="1" name="Value">40+level*2</param>
-                </action>
-                <action id="0" name="Spawn another object" sid="5218893664450305" type="tank">
-                    <param id="0" name="Object">bigbang</param>
-                    <param id="1" name="Layer">2</param>
-                    <param id="2" name="Image point">1</param>
-                </action>
-                <action id="-9" name="Destroy" sid="1555442819494576" type="tank" />
-                <action id="-10" name="Add to" sid="3724167829268133" type="System">
-                    <param id="0" name="Variable">money</param>
-                    <param id="1" name="Value">random(45,75)</param>
-                </action>
-                <action id="-10" name="Add to" sid="7908576251164173" type="System">
-                    <param id="0" name="Variable">ammo</param>
-                    <param id="1" name="Value">random(3,6)</param>
-                </action>
-            </actions>
-        </event-block>
-        <event-block sid="7027710673053653">
-            <conditions>
-                <condition id="-18" name="On created" sid="485195099730175" type="tank" />
-            </conditions>
-            <actions>
-                <action id="-8" name="Set angle" sid="5234042112645136" type="tank">
-                    <param id="0" name="Angle">180</param>
                 </action>
             </actions>
         </event-block>
@@ -787,7 +699,7 @@
                 <condition id="-14" name="Compare variable" sid="9784538250411218" type="System">
                     <param id="0" name="Variable">HP</param>
                     <param id="1" name="Comparison">3</param>
-                    <param id="2" name="Value">550</param>
+                    <param id="2" name="Value">720</param>
                 </condition>
                 <condition id="-14" name="Compare variable" sid="7198187999847342" type="System">
                     <param id="0" name="Variable">level</param>
@@ -811,7 +723,7 @@
                 <condition id="-14" name="Compare variable" sid="6919066453292473" type="System">
                     <param id="0" name="Variable">HP</param>
                     <param id="1" name="Comparison">3</param>
-                    <param id="2" name="Value">300</param>
+                    <param id="2" name="Value">450</param>
                 </condition>
             </conditions>
             <actions>
@@ -1011,7 +923,7 @@
             </conditions>
             <actions>
                 <action id="8" name="Open URL in new window" sid="1973407704472121" type="Browser">
-                    <param id="0" name="URL">&quot;http://bizarri.pl&quot;</param>
+                    <param id="0" name="URL">&quot;http://koprowski.it&quot;</param>
                     <param id="1" name="Tag">&quot;Author&apos;s website&quot;</param>
                 </action>
             </actions>
@@ -1223,7 +1135,7 @@
                     <param id="0" name="Object to create">boss1</param>
                     <param id="1" name="Layer">2</param>
                     <param id="2" name="X">800</param>
-                    <param id="3" name="Y">200</param>
+                    <param id="3" name="Y">112</param>
                 </action>
                 <action id="-10" name="Add to" sid="3482784290353856" type="System">
                     <param id="0" name="Variable">boss</param>
@@ -1241,20 +1153,6 @@
                 </action>
             </actions>
         </event-block>
-        <event-block sid="7054461179785831">
-            <conditions>
-                <condition id="-8" name="Compare two values" sid="5874543380401343" type="System">
-                    <param id="0" name="First value">boss1.X</param>
-                    <param id="1" name="Comparison">3</param>
-                    <param id="2" name="Second value">450</param>
-                </condition>
-            </conditions>
-            <actions>
-                <action behavior="Bullet" id="0" name="Set speed" sid="3283163145124965" type="boss1">
-                    <param id="0" name="Speed">0</param>
-                </action>
-            </actions>
-        </event-block>
         <event-block sid="4165028631334641">
             <conditions>
                 <condition id="-6" name="Every X seconds" sid="2124431958612335" type="System">
@@ -1267,11 +1165,6 @@
                     <param id="1" name="Layer">2</param>
                     <param id="2" name="Image point">0</param>
                 </action>
-                <action id="0" name="Spawn another object" sid="993427908905022" type="boss1">
-                    <param id="0" name="Object">dymu</param>
-                    <param id="1" name="Layer">2</param>
-                    <param id="2" name="Image point">0</param>
-                </action>
                 <action id="-16" name="Wait" sid="9545376803460684" type="System">
                     <param id="0" name="Seconds">0.6</param>
                 </action>
@@ -1280,21 +1173,11 @@
                     <param id="1" name="Layer">2</param>
                     <param id="2" name="Image point">0</param>
                 </action>
-                <action id="0" name="Spawn another object" sid="8817039882826362" type="boss1">
-                    <param id="0" name="Object">dymu</param>
-                    <param id="1" name="Layer">2</param>
-                    <param id="2" name="Image point">0</param>
-                </action>
                 <action id="-16" name="Wait" sid="6740204163148448" type="System">
                     <param id="0" name="Seconds">0.6</param>
                 </action>
                 <action id="0" name="Spawn another object" sid="4917716899351932" type="boss1">
                     <param id="0" name="Object">boss_bullet</param>
-                    <param id="1" name="Layer">2</param>
-                    <param id="2" name="Image point">0</param>
-                </action>
-                <action id="0" name="Spawn another object" sid="2091935763856926" type="boss1">
-                    <param id="0" name="Object">dymu</param>
                     <param id="1" name="Layer">2</param>
                     <param id="2" name="Image point">0</param>
                 </action>
@@ -1440,7 +1323,7 @@
                     <param id="0" name="Object to create">boss2</param>
                     <param id="1" name="Layer">2</param>
                     <param id="2" name="X">800</param>
-                    <param id="3" name="Y">200</param>
+                    <param id="3" name="Y">115</param>
                 </action>
                 <action id="-10" name="Add to" sid="6264655914885482" type="System">
                     <param id="0" name="Variable">boss</param>
@@ -1458,20 +1341,6 @@
                 </action>
             </actions>
         </event-block>
-        <event-block sid="6202218771977257">
-            <conditions>
-                <condition id="-8" name="Compare two values" sid="7910151102673346" type="System">
-                    <param id="0" name="First value">boss2.X</param>
-                    <param id="1" name="Comparison">3</param>
-                    <param id="2" name="Second value">450</param>
-                </condition>
-            </conditions>
-            <actions>
-                <action behavior="Bullet" id="0" name="Set speed" sid="7011236310249116" type="boss2">
-                    <param id="0" name="Speed">0</param>
-                </action>
-            </actions>
-        </event-block>
         <event-block sid="9690679915441883">
             <conditions>
                 <condition id="-6" name="Every X seconds" sid="6812760413148181" type="System">
@@ -1484,11 +1353,6 @@
                     <param id="1" name="Layer">2</param>
                     <param id="2" name="Image point">0</param>
                 </action>
-                <action id="0" name="Spawn another object" sid="4296843200855397" type="boss2">
-                    <param id="0" name="Object">dymu</param>
-                    <param id="1" name="Layer">2</param>
-                    <param id="2" name="Image point">0</param>
-                </action>
                 <action id="-16" name="Wait" sid="7062877473736278" type="System">
                     <param id="0" name="Seconds">0.6</param>
                 </action>
@@ -1497,21 +1361,24 @@
                     <param id="1" name="Layer">2</param>
                     <param id="2" name="Image point">0</param>
                 </action>
-                <action id="0" name="Spawn another object" sid="4073450627325478" type="boss2">
-                    <param id="0" name="Object">dymu</param>
-                    <param id="1" name="Layer">2</param>
-                    <param id="2" name="Image point">0</param>
-                </action>
                 <action id="-16" name="Wait" sid="1911267615921624" type="System">
                     <param id="0" name="Seconds">0.6</param>
+                </action>
+                <action id="0" name="Spawn another object" sid="6315424866426496" type="boss2">
+                    <param id="0" name="Object">boss_bullet</param>
+                    <param id="1" name="Layer">2</param>
+                    <param id="2" name="Image point">0</param>
                 </action>
                 <action id="0" name="Spawn another object" sid="7303766589588899" type="boss2">
                     <param id="0" name="Object">boss_bullet</param>
                     <param id="1" name="Layer">2</param>
                     <param id="2" name="Image point">0</param>
                 </action>
-                <action id="0" name="Spawn another object" sid="3822989218507665" type="boss2">
-                    <param id="0" name="Object">dymu</param>
+                <action id="-16" name="Wait" sid="5708221520715098" type="System">
+                    <param id="0" name="Seconds">0.6</param>
+                </action>
+                <action id="0" name="Spawn another object" sid="2455107187778416" type="boss2">
+                    <param id="0" name="Object">boss_bullet</param>
                     <param id="1" name="Layer">2</param>
                     <param id="2" name="Image point">0</param>
                 </action>
@@ -1638,7 +1505,7 @@
                     <param id="0" name="Object to create">boss3</param>
                     <param id="1" name="Layer">2</param>
                     <param id="2" name="X">800</param>
-                    <param id="3" name="Y">200</param>
+                    <param id="3" name="Y">125</param>
                 </action>
                 <action id="0" name="Set text" sid="4287257980150667" type="bossHP">
                     <param id="0" name="Text">&quot;Boss HP: &quot;&amp;boss3.boss_hp</param>
@@ -1656,20 +1523,6 @@
                 </action>
             </actions>
         </event-block>
-        <event-block sid="3003459833952659">
-            <conditions>
-                <condition id="-8" name="Compare two values" sid="3088803123607495" type="System">
-                    <param id="0" name="First value">boss3.X</param>
-                    <param id="1" name="Comparison">3</param>
-                    <param id="2" name="Second value">450</param>
-                </condition>
-            </conditions>
-            <actions>
-                <action behavior="Bullet" id="0" name="Set speed" sid="6886632271859285" type="boss3">
-                    <param id="0" name="Speed">0</param>
-                </action>
-            </actions>
-        </event-block>
         <event-block sid="8492047859604412">
             <conditions>
                 <condition id="-6" name="Every X seconds" sid="8794233818303218" type="System">
@@ -1682,34 +1535,35 @@
                     <param id="1" name="Layer">2</param>
                     <param id="2" name="Image point">0</param>
                 </action>
-                <action id="0" name="Spawn another object" sid="7912096337480721" type="boss3">
-                    <param id="0" name="Object">dymu</param>
-                    <param id="1" name="Layer">2</param>
-                    <param id="2" name="Image point">0</param>
-                </action>
                 <action id="-16" name="Wait" sid="8878974994850862" type="System">
-                    <param id="0" name="Seconds">0.6</param>
+                    <param id="0" name="Seconds">0.3</param>
                 </action>
                 <action id="0" name="Spawn another object" sid="4901706255267938" type="boss3">
                     <param id="0" name="Object">boss_bullet</param>
                     <param id="1" name="Layer">2</param>
                     <param id="2" name="Image point">0</param>
                 </action>
-                <action id="0" name="Spawn another object" sid="834853846117997" type="boss3">
-                    <param id="0" name="Object">dymu</param>
-                    <param id="1" name="Layer">2</param>
-                    <param id="2" name="Image point">0</param>
-                </action>
                 <action id="-16" name="Wait" sid="3095416851982569" type="System">
-                    <param id="0" name="Seconds">0.6</param>
+                    <param id="0" name="Seconds">0.4</param>
                 </action>
                 <action id="0" name="Spawn another object" sid="265878350233555" type="boss3">
                     <param id="0" name="Object">boss_bullet</param>
                     <param id="1" name="Layer">2</param>
                     <param id="2" name="Image point">0</param>
                 </action>
-                <action id="0" name="Spawn another object" sid="7804257880757013" type="boss3">
-                    <param id="0" name="Object">dymu</param>
+                <action id="-16" name="Wait" sid="628658079700639" type="System">
+                    <param id="0" name="Seconds">0.5</param>
+                </action>
+                <action id="0" name="Spawn another object" sid="3667701648446368" type="boss3">
+                    <param id="0" name="Object">boss_bullet</param>
+                    <param id="1" name="Layer">2</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+                <action id="-16" name="Wait" sid="6420377025840978" type="System">
+                    <param id="0" name="Seconds">0.5</param>
+                </action>
+                <action id="0" name="Spawn another object" sid="6767539418808038" type="boss3">
+                    <param id="0" name="Object">boss_bullet</param>
                     <param id="1" name="Layer">2</param>
                     <param id="2" name="Image point">0</param>
                 </action>
@@ -1724,7 +1578,7 @@
             <actions>
                 <action id="-12" name="Subtract from" sid="2559202321981886" type="boss3">
                     <param id="0" name="Instance variable">boss_hp</param>
-                    <param id="1" name="Value">24</param>
+                    <param id="1" name="Value">30</param>
                 </action>
                 <action id="0" name="Set text" sid="5891617319758733" type="bossHP">
                     <param id="0" name="Text">&quot;Boss HP: &quot;&amp;boss3.boss_hp</param>
@@ -1863,6 +1717,57 @@
                 <action id="-9" name="Set value" sid="9509076751235972" type="System">
                     <param id="0" name="Variable">ammo</param>
                     <param id="1" name="Value">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="9843591479236867">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="8758636154804236" type="boss3">
+                    <param id="0" name="Object">cel_samolotow</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-12" name="Subtract from" sid="2837955300609577" type="boss3">
+                    <param id="0" name="Instance variable">boss_hp</param>
+                    <param id="1" name="Value">20000</param>
+                </action>
+                <action id="-11" name="Subtract from" sid="5057382179699394" type="System">
+                    <param id="0" name="Variable">points</param>
+                    <param id="1" name="Value">6000</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="431430704241739">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="7573990805239764" type="boss2">
+                    <param id="0" name="Object">cel_samolotow</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-12" name="Subtract from" sid="1991601896114146" type="boss2">
+                    <param id="0" name="Instance variable">bosshp</param>
+                    <param id="1" name="Value">20000</param>
+                </action>
+                <action id="-11" name="Subtract from" sid="3249574052034242" type="System">
+                    <param id="0" name="Variable">points</param>
+                    <param id="1" name="Value">3500</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="7464869667661517">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="3958896585450339" type="boss1">
+                    <param id="0" name="Object">cel_samolotow</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-12" name="Subtract from" sid="5058041570242331" type="boss1">
+                    <param id="0" name="Instance variable">boss_hp</param>
+                    <param id="1" name="Value">20000</param>
+                </action>
+                <action id="-11" name="Subtract from" sid="7201848956603854" type="System">
+                    <param id="0" name="Variable">points</param>
+                    <param id="1" name="Value">1500</param>
                 </action>
             </actions>
         </event-block>
